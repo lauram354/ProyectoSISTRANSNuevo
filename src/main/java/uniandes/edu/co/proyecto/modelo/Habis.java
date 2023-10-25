@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,16 +19,22 @@ public class Habis {
     private Boolean miniBar;
     private Boolean cafetera;
 
+    @ManyToOne
+    @JoinColumn(name = "TiposHabi_tipo", referencedColumnName = "tipo")
+    private TiposHabi tipo;
+
+
     
     //CONSTRUCTORS
 
     public Habis()
     {;}
 
-    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera) {
+    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo) {
         this.tv = tv;
         this.miniBar = miniBar;
         this.cafetera = cafetera;
+        this.tipo = tipo;
     }
     //GETTERS
     public Integer getId_habitacion() {
@@ -35,6 +43,14 @@ public class Habis {
 
     public Boolean getTv() {
         return tv;
+    }
+
+    public TiposHabi getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TiposHabi tipo) {
+        this.tipo = tipo;
     }
 
     public Boolean getMiniBar() {

@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,14 +18,19 @@ public class TiposHabi {
     private Float costo_alojamiento;
     private Integer capacidad;
 
+    @ManyToOne
+    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    private Hoteles nombre;
+
     //CONSTRUCTORS
 
     public TiposHabi()
     {;}
 
-    public TiposHabi(Integer capacidad, Float costo) {
+    public TiposHabi(Integer capacidad, Float costo, Hoteles nombre) {
         this.capacidad = capacidad;
         this.costo_alojamiento = costo;
+        this.nombre = nombre;
     }
 
     //GETTERS
@@ -51,6 +58,14 @@ public class TiposHabi {
 
     public void setCosto_alojamiento(Float costo_alojamiento) {
         this.costo_alojamiento = costo_alojamiento;
+    }
+
+    public Hoteles getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(Hoteles nombre) {
+        this.nombre = nombre;
     }
 
     

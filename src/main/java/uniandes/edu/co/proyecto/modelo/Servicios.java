@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,19 +19,55 @@ public class Servicios {
     private String tipo_servicio;
     private String descripcion;
     private float costo;
+    private String idTipo;
+
+    @ManyToOne
+    @JoinColumn(name = "Clientes_id", referencedColumnName = "id")
+    private Clientes idCliente;
+
+    @ManyToOne
+    @JoinColumn(name = "Cuentas_idCuenta", referencedColumnName = "idCuenta")
+    private Cuentas idCuenta;
 
     //CONSTRUCTORS
 
     public Servicios()
     {;}
 
-    public Servicios(String tipo, String descripcion, float costo) {
+    public Servicios(String tipo, String descripcion, float costo, Clientes idCliente, Cuentas idCuenta, String idTipo) {
         this.tipo_servicio = tipo;
         this.descripcion =descripcion;
         this.costo = costo;
+        this.idCliente = idCliente;
+        this.idCuenta = idCuenta;
+        this.idTipo = idTipo;
     }
 
     //GETTERS
+
+    public String getIdTipo() {
+        return idTipo;
+    }
+
+    public void setIdTipo(String idTipo) {
+        this.idTipo = idTipo;
+    }
+
+    public Clientes getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Clientes idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Cuentas getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(Cuentas idCuenta) {
+        this.idCuenta = idCuenta;
+    }
 
     public Integer getIdServicio() {
         return idServicio;
