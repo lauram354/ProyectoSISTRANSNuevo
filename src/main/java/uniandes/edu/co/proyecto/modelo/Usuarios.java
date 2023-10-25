@@ -23,7 +23,8 @@ public class Usuarios {
     public Usuarios()
     {;}
 
-    public Usuarios(String tipoId, String nombreUsuario, String email, String rol) {
+    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String rol) {
+        this.id = id;
         this.tipo_id = tipoId;
         this.nombre = nombreUsuario;
         this.eMail = email;
