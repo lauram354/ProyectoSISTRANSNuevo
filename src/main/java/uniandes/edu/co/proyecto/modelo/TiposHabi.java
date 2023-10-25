@@ -14,6 +14,7 @@ public class TiposHabi {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer idTipoHabi;
     private String tipo;
     private Float costo_alojamiento;
     private Integer capacidad;
@@ -27,7 +28,8 @@ public class TiposHabi {
     public TiposHabi()
     {;}
 
-    public TiposHabi(Integer capacidad, Float costo, Hoteles nombre) {
+    public TiposHabi(String tipo, Integer capacidad, Float costo, Hoteles nombre) {
+        this.tipo = tipo;
         this.capacidad = capacidad;
         this.costo_alojamiento = costo;
         this.nombre = nombre;
@@ -37,6 +39,14 @@ public class TiposHabi {
 
     public String getTipo() {
         return tipo;
+    }
+
+    public Integer getIdTipoHabi() {
+        return idTipoHabi;
+    }
+
+    public void setIdTipoHabi(Integer idTipoHabi) {
+        this.idTipoHabi = idTipoHabi;
     }
 
     public Integer getCapacidad() {

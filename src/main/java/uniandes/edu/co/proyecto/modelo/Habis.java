@@ -20,7 +20,7 @@ public class Habis {
     private Boolean cafetera;
 
     @ManyToOne
-    @JoinColumn(name = "TiposHabi_tipo", referencedColumnName = "tipo")
+    @JoinColumn(name = "TiposHabi_idTipoHabi", referencedColumnName = "idTipoHabi")
     private TiposHabi tipo;
 
 
