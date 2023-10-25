@@ -18,6 +18,7 @@ public class Habis {
     private Boolean tv;
     private Boolean miniBar;
     private Boolean cafetera;
+    private Integer numHabi;
 
     @ManyToOne
     @JoinColumn(name = "TiposHabi_idTipoHabi", referencedColumnName = "idTipoHabi")
@@ -30,11 +31,12 @@ public class Habis {
     public Habis()
     {;}
 
-    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo) {
+    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo, Integer numHabi) {
         this.tv = tv;
         this.miniBar = miniBar;
         this.cafetera = cafetera;
         this.tipo = tipo;
+        this.numHabi = numHabi;
     }
     //GETTERS
     public Integer getId_habitacion() {
@@ -77,6 +79,14 @@ public class Habis {
 
     public void setCafetera(Boolean cafetera) {
         this.cafetera = cafetera;
+    }
+
+    public Integer getNumHabi() {
+        return numHabi;
+    }
+
+    public void setNumHabi(Integer numHabi) {
+        this.numHabi = numHabi;
     }
 
     

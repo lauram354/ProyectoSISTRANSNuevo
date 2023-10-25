@@ -29,21 +29,34 @@ public class Servicios {
     @JoinColumn(name = "Cuentas_idCuenta", referencedColumnName = "idCuenta")
     private Cuentas idCuenta;
 
+    @ManyToOne
+    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    private Hoteles hotel;
+
     //CONSTRUCTORS
 
     public Servicios()
     {;}
 
-    public Servicios(String tipo, String descripcion, float costo, Clientes idCliente, Cuentas idCuenta, String idTipo) {
+    public Servicios(String tipo, String descripcion, float costo, Clientes idCliente, Cuentas idCuenta, String idTipo, Hoteles hotel) {
         this.tipo_servicio = tipo;
         this.descripcion =descripcion;
         this.costo = costo;
         this.idCliente = idCliente;
         this.idCuenta = idCuenta;
         this.idTipo = idTipo;
+        this.hotel = hotel;
     }
 
     //GETTERS
+
+    public Hoteles getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hoteles hotel) {
+        this.hotel = hotel;
+    }
 
     public String getIdTipo() {
         return idTipo;

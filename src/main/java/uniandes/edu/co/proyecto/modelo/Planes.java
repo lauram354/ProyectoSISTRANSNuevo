@@ -14,6 +14,7 @@ public class Planes {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer idTipoPlan;
     private String tipo_plan;
     private Float descuento;
     
@@ -27,16 +28,31 @@ public class Planes {
     public Planes() 
     {;}
 
-    public Planes(Float descuento,  Hoteles nombreHotel) {
+    public Planes(Float descuento,  Hoteles nombreHotel, String tipo_plan) {
         this.descuento = descuento;
         this.nombreHotel = nombreHotel;
+        this.tipo_plan = tipo_plan;
     }
 
     //GETTERS
 
-    public String getTipo() {
+    public Integer getIdTipoPlan() {
+        return idTipoPlan;
+    }
+
+    public void setIdTipoPlan(Integer idTipoPlan) {
+        this.idTipoPlan = idTipoPlan;
+    }
+
+    public String getTipo_plan() {
         return tipo_plan;
     }
+
+    public void setTipo_plan(String tipo_plan) {
+        this.tipo_plan = tipo_plan;
+    }
+
+   
 
     public Float getDescuento() {
         return descuento;
@@ -49,9 +65,6 @@ public class Planes {
 
     //SETTERS
 
-    public void setTipo(String tipo) {
-        this.tipo_plan = tipo;
-    }
 
     public void setDescuento(Float descuento) {
         this.descuento = descuento;
