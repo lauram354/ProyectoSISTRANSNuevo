@@ -21,6 +21,10 @@ public class Reservas {
     private String fechaFinal;
 
     @ManyToOne
+    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    private Hoteles nombreHotel;
+
+    @ManyToOne
     @JoinColumn(name = "Planes_tipo_plan", referencedColumnName = "tipo_plan")
     private Planes tipoPlan;
 

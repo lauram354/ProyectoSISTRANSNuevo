@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Hoteles")
 public class Hoteles {
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
