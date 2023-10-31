@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,23 +20,55 @@ public class Usuarios {
     private String nombre;
     private String eMail;
     private String rol;
+    private String contrasenia;
+    private String login;
 
+    @ManyToOne
+    @JoinColumn(name = "tiposUsu_idTipo", referencedColumnName = "idTipo")
+    private tiposUsu tipoUsu;
 
     public Usuarios()
     {;}
 
-    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String rol) {
+    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String rol, String login, String contrasenia, tiposUsu tipo) {
         this.id = id;
         this.tipo_id = tipoId;
         this.nombre = nombreUsuario;
         this.eMail = email;
         this.rol = rol;
+        this.contrasenia = contrasenia;
+        this.login = login;
+        this.tipoUsu = tipo;
     }
 
     //GETTERS
 
     public Integer getIdUsuario() {
         return id;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public tiposUsu getTipoUsu() {
+        return tipoUsu;
+    }
+
+    public void setTipoUsu(tiposUsu tipoUsu) {
+        this.tipoUsu = tipoUsu;
     }
 
     public String getTipoId() {
