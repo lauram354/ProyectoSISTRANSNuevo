@@ -21,9 +21,6 @@ public class Servicios {
     private float costo;
     private String idTipo;
 
-    @ManyToOne
-    @JoinColumn(name = "Clientes_id", referencedColumnName = "id")
-    private Clientes idCliente;
 
     @ManyToOne
     @JoinColumn(name = "Cuentas_idCuenta", referencedColumnName = "idCuenta")
@@ -38,11 +35,10 @@ public class Servicios {
     public Servicios()
     {;}
 
-    public Servicios(String tipo, String descripcion, float costo, Clientes idCliente, Cuentas idCuenta, String idTipo, Hoteles hotel) {
+    public Servicios(String tipo, String descripcion, float costo, Cuentas idCuenta, String idTipo, Hoteles hotel) {
         this.tipo_servicio = tipo;
         this.descripcion =descripcion;
         this.costo = costo;
-        this.idCliente = idCliente;
         this.idCuenta = idCuenta;
         this.idTipo = idTipo;
         this.hotel = hotel;
@@ -64,14 +60,6 @@ public class Servicios {
 
     public void setIdTipo(String idTipo) {
         this.idTipo = idTipo;
-    }
-
-    public Clientes getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Clientes idCliente) {
-        this.idCliente = idCliente;
     }
 
     public Cuentas getIdCuenta() {
