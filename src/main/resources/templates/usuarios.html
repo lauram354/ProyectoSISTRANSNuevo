@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <h1>Lista de Usuarios</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>TIPO ID</th>
+                    <th>NOMBRE</th>
+                    <th>EMAIL</th>
+                    <th>TIPO USUARIO</th>
+                    <th>CONTRASEÑA</th>
+                    <th>LOGIN</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <th:block th:each="usuario:${usuarios}">
+                <tr>
+                    <td th:text="${usuario.getIdUsuario()}"></td>
+                    <td th:text="${usuario.getTipoId()}"></td>
+                    <td th:text="${usuario.getNombreUsuario()}"></td>
+                    <td th:text="${usuario.getEmail()}"></td>
+                    <td th:text="${usuario.getTipoUsu().getIdTipo()}"></td>
+                    <td th:text="${usuario.getContrasenia()}"></td>
+                    <td th:text="${usuario.getLogin()}"></td>
+                    <td>
+                        <a th:href="@{usuarios/{id}/edit(id=${usuario.getIdUsuario()})}">Editar</a>
+                        <a th:href="@{usuarios/{id}/delete(id=${usuario.getIdUsuario()})}" onclick="return confirm('¿Estas seguro de borrar este usuario?')">Borrar</a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver Atrás</a>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

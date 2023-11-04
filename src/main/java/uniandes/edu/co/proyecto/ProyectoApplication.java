@@ -12,21 +12,10 @@ import uniandes.edu.co.proyecto.modelo.Usuarios;
 import uniandes.edu.co.proyecto.repositorio.UsuariosRepository;
 
 @SpringBootApplication
-public class ProyectoApplication implements CommandLineRunner{
+public class ProyectoApplication {
 
-	@Autowired
-	private UsuariosRepository usuariosRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
-	@Override
-	public void run(String ... arg){
-		Collection<Usuarios> usuarios = usuariosRepository.darUsuarios();
-		Usuarios us = new Usuarios();
-		for (Usuarios u: usuarios){
-			us = u;
-		}
-		System.out.println(us.getNombreUsuario());
-	}
 }
