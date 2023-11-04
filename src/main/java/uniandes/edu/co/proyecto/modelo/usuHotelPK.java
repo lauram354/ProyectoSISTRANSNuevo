@@ -10,16 +10,16 @@ import jakarta.persistence.ManyToOne;
 public class usuHotelPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "Usuarios_id", referencedColumnName = "id")
-    private Usuarios idUsuario;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    private Usuarios idusuario;
 
     @ManyToOne
-    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles nombreHotel;
 
-    public usuHotelPK(Usuarios idUsuario, Hoteles nombreHotel) {
+    public usuHotelPK(Usuarios idusuario, Hoteles nombreHotel) {
         super();
-        this.idUsuario = idUsuario;
+        this.idusuario = idusuario;
         this.nombreHotel = nombreHotel;
     }
 
@@ -30,14 +30,14 @@ public class usuHotelPK implements Serializable {
 
 
 
-    public Usuarios getIdUsuario() {
-        return idUsuario;
+    public Usuarios getIdusuario() {
+        return idusuario;
     }
 
 
 
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdusuario(Usuarios idusuario) {
+        this.idusuario = idusuario;
     }
 
 

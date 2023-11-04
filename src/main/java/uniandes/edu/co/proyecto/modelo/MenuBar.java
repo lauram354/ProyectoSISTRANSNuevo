@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="MenuBar")
+@Table(name="menubar")
 public class MenuBar {
 
     @EmbeddedId

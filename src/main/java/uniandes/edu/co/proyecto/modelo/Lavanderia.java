@@ -5,22 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Lavanderia")
+@Table(name="lavanderia")
 public class Lavanderia {
 
     @EmbeddedId
     private LavanderiaPK pk;
 
-    private String tipoPrenda;
+    private String tipoprenda;
 
 
     public Lavanderia()
     {;}
 
 
-    public Lavanderia(LavanderiaPK pk, String tipoPrenda) {
+    public Lavanderia(LavanderiaPK pk, String tipoprenda) {
         this.pk = pk;
-        this.tipoPrenda = tipoPrenda;
+        this.tipoprenda = tipoprenda;
     }
 
 
@@ -29,8 +29,8 @@ public class Lavanderia {
     }
 
 
-    public String getTipoPrenda() {
-        return tipoPrenda;
+    public String getTipoprenda() {
+        return tipoprenda;
     }
 
 
@@ -39,8 +39,8 @@ public class Lavanderia {
     }
 
 
-    public void setTipoPrenda(String tipoPrenda) {
-        this.tipoPrenda = tipoPrenda;
+    public void setTipoprenda(String tipoprenda) {
+        this.tipoprenda = tipoprenda;
     }
 
     

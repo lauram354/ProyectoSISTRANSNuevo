@@ -9,18 +9,18 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Planes")
+@Table(name="planes")
 public class Planes {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idTipoPlan;
+    private Integer idtipoplan;
     private String tipo_plan;
     private Float descuento;
     
 
     @ManyToOne
-    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles nombreHotel;
 
     //CONSTRUCTORS
@@ -37,11 +37,11 @@ public class Planes {
     //GETTERS
 
     public Integer getIdTipoPlan() {
-        return idTipoPlan;
+        return idtipoplan;
     }
 
     public void setIdTipoPlan(Integer idTipoPlan) {
-        this.idTipoPlan = idTipoPlan;
+        this.idtipoplan = idTipoPlan;
     }
 
     public String getTipo_plan() {

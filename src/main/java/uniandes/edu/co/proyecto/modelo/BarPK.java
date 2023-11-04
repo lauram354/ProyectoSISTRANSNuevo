@@ -10,23 +10,23 @@ import jakarta.persistence.ManyToOne;
 public class BarPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "idServicio", referencedColumnName = "idServicio")
-    private Servicios idServicio;
+    @JoinColumn(name = "idservicio", referencedColumnName = "idservicio")
+    private Servicios idservicio;
 
     public BarPK(Servicios idServicios) {
         super();
-        this.idServicio = idServicios;
+        this.idservicio = idServicios;
     }
 
     public BarPK() {
     }
 
     public Servicios getIdServicio() {
-        return idServicio;
+        return idservicio;
     }
 
     public void setIdServicio(Servicios idServicio) {
-        this.idServicio = idServicio;
+        this.idservicio = idServicio;
     }
     
 }

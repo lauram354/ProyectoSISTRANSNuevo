@@ -10,13 +10,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Cuentas")
+@Table(name="cuentas")
 public class Cuentas {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 
-    private Integer idCuenta;
+    private Integer idcuenta;
     private Boolean pagado;
     private Date fecha;
     //CONSTRUCTORS
@@ -32,7 +32,7 @@ public class Cuentas {
     //GETTERS
 
     public Integer getIdCuenta() {
-        return idCuenta;
+        return idcuenta;
     }
 
     public Boolean getPagado() {
@@ -48,7 +48,7 @@ public class Cuentas {
     //SETTERS
 
     public void setIdCuenta(Integer idCuenta) {
-        this.idCuenta = idCuenta;
+        this.idcuenta = idCuenta;
     }
 
     public void setPagado(Boolean pagado) {

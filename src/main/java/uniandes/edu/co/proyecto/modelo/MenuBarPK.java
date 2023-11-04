@@ -10,27 +10,27 @@ import jakarta.persistence.ManyToOne;
 public class MenuBarPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "Bar_idServicio", referencedColumnName = "idServicio")
-    private Bar idServicio;
+    @JoinColumn(name = "bar_idservicio", referencedColumnName = "idservicio")
+    private Bar idservicio;
 
     @ManyToOne
-    @JoinColumn(name = "Menu_idProducto", referencedColumnName = "idProducto")
+    @JoinColumn(name = "menu_idproducto", referencedColumnName = "idproducto")
     private Menu producto;
 
     public MenuBarPK() {
     }
 
-    public MenuBarPK(Bar idServicio, Menu producto) {
-        this.idServicio = idServicio;
+    public MenuBarPK(Bar idservicio, Menu producto) {
+        this.idservicio = idservicio;
         this.producto = producto;
     }
 
-    public Bar getIdServicio() {
-        return idServicio;
+    public Bar getIdservicio() {
+        return idservicio;
     }
 
-    public void setIdServicio(Bar idServicio) {
-        this.idServicio = idServicio;
+    public void setIdservicio(Bar idservicio) {
+        this.idservicio = idservicio;
     }
 
     public Menu getProducto() {

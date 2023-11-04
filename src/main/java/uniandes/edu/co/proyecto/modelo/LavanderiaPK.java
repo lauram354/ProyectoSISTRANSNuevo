@@ -10,23 +10,23 @@ import jakarta.persistence.ManyToOne;
 public class LavanderiaPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "idServicio", referencedColumnName = "idServicio")
-    private Servicios idServicio;
+    @JoinColumn(name = "idservicio", referencedColumnName = "idservicio")
+    private Servicios idservicio;
 
-    public LavanderiaPK(Servicios idServicios) {
+    public LavanderiaPK(Servicios idservicios) {
         super();
-        this.idServicio = idServicios;
+        this.idservicio = idservicios;
     }
 
     public LavanderiaPK() {
     }
 
-    public Servicios getIdServicio() {
-        return idServicio;
+    public Servicios getIdservicio() {
+        return idservicio;
     }
 
-    public void setIdServicio(Servicios idServicio) {
-        this.idServicio = idServicio;
+    public void setIdservicio(Servicios idservicio) {
+        this.idservicio = idservicio;
     }
     
 }

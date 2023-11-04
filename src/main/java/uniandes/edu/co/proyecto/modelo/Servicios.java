@@ -9,25 +9,25 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Servicios")
+@Table(name="servicios")
 public class Servicios {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)  
-    private Integer idServicio;
+    private Integer idservicio;
 
     private String tipo_servicio;
     private String descripcion;
     private float costo;
-    private String idTipo;
+    private String idtipo;
 
 
     @ManyToOne
-    @JoinColumn(name = "Cuentas_idCuenta", referencedColumnName = "idCuenta")
-    private Cuentas idCuenta;
+    @JoinColumn(name = "cuentas_idcuenta", referencedColumnName = "idcuenta")
+    private Cuentas idcuenta;
 
     @ManyToOne
-    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles hotel;
 
     //CONSTRUCTORS
@@ -35,12 +35,12 @@ public class Servicios {
     public Servicios()
     {;}
 
-    public Servicios(String tipo, String descripcion, float costo, Cuentas idCuenta, String idTipo, Hoteles hotel) {
+    public Servicios(String tipo, String descripcion, float costo, Cuentas idcuenta, String idtipo, Hoteles hotel) {
         this.tipo_servicio = tipo;
         this.descripcion =descripcion;
         this.costo = costo;
-        this.idCuenta = idCuenta;
-        this.idTipo = idTipo;
+        this.idcuenta = idcuenta;
+        this.idtipo = idtipo;
         this.hotel = hotel;
     }
 
@@ -54,24 +54,24 @@ public class Servicios {
         this.hotel = hotel;
     }
 
-    public String getIdTipo() {
-        return idTipo;
+    public String getIdtipo() {
+        return idtipo;
     }
 
-    public void setIdTipo(String idTipo) {
-        this.idTipo = idTipo;
+    public void setIdtipo(String idtipo) {
+        this.idtipo = idtipo;
     }
 
-    public Cuentas getIdCuenta() {
-        return idCuenta;
+    public Cuentas getIdcuenta() {
+        return idcuenta;
     }
 
-    public void setIdCuenta(Cuentas idCuenta) {
-        this.idCuenta = idCuenta;
+    public void setIdcuenta(Cuentas idcuenta) {
+        this.idcuenta = idcuenta;
     }
 
-    public Integer getIdServicio() {
-        return idServicio;
+    public Integer getIdservicio() {
+        return idservicio;
     }
 
     public String getTipo() {
@@ -95,8 +95,8 @@ public class Servicios {
         this.costo = costo;
     }
 
-    public void setIdServicio(Integer idServicio) {
-        this.idServicio = idServicio;
+    public void setIdservicio(Integer idservicio) {
+        this.idservicio = idservicio;
     }
 
     public void setTipo(String tipo) {

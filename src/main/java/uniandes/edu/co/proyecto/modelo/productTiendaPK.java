@@ -10,27 +10,27 @@ import jakarta.persistence.ManyToOne;
 public class productTiendaPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "Tiendas_idServicio", referencedColumnName = "idServicio")
-    private Tiendas idServicio;
+    @JoinColumn(name = "tiendas_idservicio", referencedColumnName = "idservicio")
+    private Tiendas idservicio;
 
     @ManyToOne
-    @JoinColumn(name = "Productos_idProducto", referencedColumnName = "idProducto")
+    @JoinColumn(name = "productos_idproducto", referencedColumnName = "idproducto")
     private Productos producto;
 
     public productTiendaPK() {
     }
 
-    public productTiendaPK(Tiendas idServicio, Productos producto) {
-        this.idServicio = idServicio;
+    public productTiendaPK(Tiendas idservicio, Productos producto) {
+        this.idservicio = idservicio;
         this.producto = producto;
     }
 
-    public Tiendas getIdServicio() {
-        return idServicio;
+    public Tiendas getIdservicio() {
+        return idservicio;
     }
 
-    public void setIdServicio(Tiendas idServicio) {
-        this.idServicio = idServicio;
+    public void setIdservicio(Tiendas idservicio) {
+        this.idservicio = idservicio;
     }
 
     public Productos getProducto() {
@@ -41,8 +41,4 @@ public class productTiendaPK implements Serializable {
         this.producto = producto;
     }
 
-   
-
-   
 }
-

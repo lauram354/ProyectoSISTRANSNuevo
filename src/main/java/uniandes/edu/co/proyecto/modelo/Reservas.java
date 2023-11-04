@@ -9,31 +9,31 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Reservas")
+@Table(name = "reservas")
 public class Reservas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idReserva;
+    private Integer idreserva;
 
-    private Integer numPersonas;
-    private String fechaInicial;
-    private String fechaFinal;
+    private Integer numpersonas;
+    private String fechainicial;
+    private String fechafinal;
 
     @ManyToOne
-    @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles nombreHotel;
 
     @ManyToOne
-    @JoinColumn(name = "Planes_tipo_plan", referencedColumnName = "tipo_plan")
+    @JoinColumn(name = "planes_tipo_plan", referencedColumnName = "tipo_plan")
     private Planes tipoPlan;
 
     @ManyToOne
-    @JoinColumn(name = "Cuentas_idCuenta", referencedColumnName = "idCuenta")
+    @JoinColumn(name = "cuentas_idcuenta", referencedColumnName = "idcuenta")
     private Cuentas cuenta;
 
     @ManyToOne
-    @JoinColumn(name = "Habis_id_habitacion", referencedColumnName = "id_habitacion")
+    @JoinColumn(name = "habis_id_habitacion", referencedColumnName = "id_habitacion")
     private Habis idHabi;
 
     private boolean check_in;
@@ -43,11 +43,11 @@ public class Reservas {
     public Reservas()
     {;}
 
-    public Reservas(Integer numPersonas, String fechaInicial, String fechaFinal,
+    public Reservas(Integer numpersonas, String fechainicial, String fechafinal,
             boolean check_in, boolean check_out, Planes tipoPlan, Cuentas cuenta, Habis habi, Hoteles nombre) {
-        this.numPersonas = numPersonas;
-        this.fechaInicial = fechaInicial;
-        this.fechaFinal = fechaFinal;
+        this.numpersonas = numpersonas;
+        this.fechainicial = fechainicial;
+        this.fechafinal = fechafinal;
         this.check_in = check_in;
         this.check_out = check_out;
         this.tipoPlan = tipoPlan;
@@ -58,8 +58,8 @@ public class Reservas {
 
     //GETTERS
 
-    public Integer getIdReserva() {
-        return idReserva;
+    public Integer getIdreserva() {
+        return idreserva;
     }
 
     public Hoteles getNombreHotel() {
@@ -94,16 +94,16 @@ public class Reservas {
         this.tipoPlan = tipoPlan;
     }
 
-    public Integer getNumPersonas() {
-        return numPersonas;
+    public Integer getNumpersonas() {
+        return numpersonas;
     }
 
-    public String getFechaInicial() {
-        return fechaInicial;
+    public String getFechainicial() {
+        return fechainicial;
     }
 
-    public String getFechaFinal() {
-        return fechaFinal;
+    public String getFechafinal() {
+        return fechafinal;
     }
 
 
@@ -117,20 +117,20 @@ public class Reservas {
     
     //SETTERS
 
-    public void setIdReserva(Integer idReserva) {
-        this.idReserva = idReserva;
+    public void setIdreserva(Integer idreserva) {
+        this.idreserva = idreserva;
     }
 
-    public void setNumPersonas(Integer numPersonas) {
-        this.numPersonas = numPersonas;
+    public void setNumpersonas(Integer numpersonas) {
+        this.numpersonas = numpersonas;
     }
 
-    public void setFechaInicial(String fechaInicial) {
-        this.fechaInicial = fechaInicial;
+    public void setFechainicial(String fechainicial) {
+        this.fechainicial = fechainicial;
     }
 
-    public void setFechaFinal(String fechaFinal) {
-        this.fechaFinal = fechaFinal;
+    public void setFechafinal(String fechafinal) {
+        this.fechafinal = fechafinal;
     }
 
     public void setCheck_in(boolean check_in) {

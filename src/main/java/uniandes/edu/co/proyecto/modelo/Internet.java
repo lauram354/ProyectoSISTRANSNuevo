@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Internet")
+@Table(name="internet")
 public class Internet {
 
     @EmbeddedId

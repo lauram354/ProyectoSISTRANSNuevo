@@ -7,15 +7,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Productos")
+@Table(name = "productos")
 public class Productos {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idProducto;
+    private Integer idproducto;
 
     private Float costo;
-    private String nombreProducto;
+    private String nombreproducto;
 
     
 
@@ -24,36 +24,36 @@ public class Productos {
     public Productos()
     {;}
 
-    public Productos(Float costo, String nombreProducto) {
+    public Productos(Float costo, String nombreproducto) {
         this.costo = costo;
-        this.nombreProducto = nombreProducto;
+        this.nombreproducto = nombreproducto;
     }
 
     //GETTERS
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Integer getIdproducto() {
+        return idproducto;
     }
 
     public Float getCosto() {
         return costo;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public String getNombreproducto() {
+        return nombreproducto;
     }
 
     //SETTERS
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setIdproducto(Integer idproducto) {
+        this.idproducto = idproducto;
     }
 
     public void setCosto(Float costo) {
         this.costo = costo;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public void setNombreproducto(String nombreproducto) {
+        this.nombreproducto = nombreproducto;
     }
 
     

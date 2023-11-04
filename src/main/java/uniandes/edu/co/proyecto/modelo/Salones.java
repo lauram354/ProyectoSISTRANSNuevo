@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Salones")
+@Table(name="salones")
 public class Salones {
 
     @EmbeddedId
@@ -13,18 +13,18 @@ public class Salones {
 
     private Float horas;
     private String tipo;
-    private float horarioAdicional;
+    private float horarioadicional;
 
 
     public Salones()
     {;}
 
 
-    public Salones(SalonesPK pk, Float horas, String tipo, float horarioAdicional) {
+    public Salones(SalonesPK pk, Float horas, String tipo, float horarioadicional) {
         this.pk = pk;
         this.horas = horas;
         this.tipo = tipo;
-        this.horarioAdicional = horarioAdicional;
+        this.horarioadicional = horarioadicional;
     }
 
 
@@ -43,8 +43,8 @@ public class Salones {
     }
 
 
-    public float getHorarioAdicional() {
-        return horarioAdicional;
+    public float getHorarioadicional() {
+        return horarioadicional;
     }
 
 
@@ -63,8 +63,8 @@ public class Salones {
     }
 
 
-    public void setHorarioAdicional(float horarioAdicional) {
-        this.horarioAdicional = horarioAdicional;
+    public void setHorarioadicional(float horarioadicional) {
+        this.horarioadicional = horarioadicional;
     }
 
     

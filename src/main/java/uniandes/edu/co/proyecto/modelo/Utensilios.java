@@ -5,22 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Utensilios")
+@Table(name="utensilios")
 public class Utensilios {
 
     @EmbeddedId
     private UtensiliosPK pk;
 
-    private Float costoDanio;
+    private Float costodanio;
 
 
     public Utensilios()
     {;}
 
 
-    public Utensilios(UtensiliosPK pk, Float costoDanio) {
+    public Utensilios(UtensiliosPK pk, Float costodanio) {
         this.pk = pk;
-        this.costoDanio = costoDanio;
+        this.costodanio = costodanio;
     }
 
 
@@ -30,7 +30,7 @@ public class Utensilios {
 
 
     public Float getCostoDanio() {
-        return costoDanio;
+        return costodanio;
     }
 
 
@@ -39,8 +39,8 @@ public class Utensilios {
     }
 
 
-    public void setCostoDanio(Float costoDanio) {
-        this.costoDanio = costoDanio;
+    public void setCostoDanio(Float costodanio) {
+        this.costodanio = costodanio;
     }
 
     

@@ -10,27 +10,27 @@ import jakarta.persistence.ManyToOne;
 public class productSuperPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "Super_idServicio", referencedColumnName = "idServicio")
-    private Super idServicio;
+    @JoinColumn(name = "super_idservicio", referencedColumnName = "idservicio")
+    private Super idservicio;
 
     @ManyToOne
-    @JoinColumn(name = "Productos_idProducto", referencedColumnName = "idProducto")
+    @JoinColumn(name = "productos_idproducto", referencedColumnName = "idproducto")
     private Productos producto;
 
     public productSuperPK() {
     }
 
-    public productSuperPK(Super idServicio, Productos producto) {
-        this.idServicio = idServicio;
+    public productSuperPK(Super idservicio, Productos producto) {
+        this.idservicio = idservicio;
         this.producto = producto;
     }
 
-    public Super getIdServicio() {
-        return idServicio;
+    public Super getIdservicio() {
+        return idservicio;
     }
 
-    public void setIdServicio(Super idServicio) {
-        this.idServicio = idServicio;
+    public void setIdservicio(Super idservicio) {
+        this.idservicio = idservicio;
     }
 
     public Productos getProducto() {

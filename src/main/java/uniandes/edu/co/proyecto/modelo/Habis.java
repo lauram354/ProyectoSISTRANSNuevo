@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Habis")
+@Table(name = "habis")
 public class Habis {
 
     @Id
@@ -18,12 +18,12 @@ public class Habis {
     private Boolean tv;
     private Boolean miniBar;
     private Boolean cafetera;
-    private Integer numHabi;
+    private Integer numhabi;
 
     @ManyToOne
-    @JoinColumn(name = "TiposHabi_idTipoHabi", referencedColumnName = "idTipoHabi")
+    @JoinColumn(name = "tiposhabi_idtipohabi", referencedColumnName = "idtipohabi")
     private TiposHabi tipo;
-
+ 
 
     
     //CONSTRUCTORS
@@ -31,12 +31,12 @@ public class Habis {
     public Habis()
     {;}
 
-    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo, Integer numHabi) {
+    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo, Integer numhabi) {
         this.tv = tv;
         this.miniBar = miniBar;
         this.cafetera = cafetera;
         this.tipo = tipo;
-        this.numHabi = numHabi;
+        this.numhabi = numhabi;
     }
     //GETTERS
     public Integer getId_habitacion() {
@@ -82,11 +82,11 @@ public class Habis {
     }
 
     public Integer getNumHabi() {
-        return numHabi;
+        return numhabi;
     }
 
-    public void setNumHabi(Integer numHabi) {
-        this.numHabi = numHabi;
+    public void setNumHabi(Integer numhabi) {
+        this.numhabi = numhabi;
     }
 
     

@@ -11,41 +11,41 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Horarios")
+@Table(name = "horarios")
 public class Horarios{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idHorario;
+    private Integer idhorario;
     private String dias;
-    private Date horaIncial;
-    private Date horaFinal;
+    private Date horaincial;
+    private Date horafinal;
     private boolean ocupado;
 
     @ManyToOne
-    @JoinColumn(name = "Piscina_idServicio", referencedColumnName = "idServicio")
+    @JoinColumn(name = "piscina_idservicio", referencedColumnName = "idservicio")
     private Piscina piscina;
     
     @ManyToOne
-    @JoinColumn(name = "Gym_idServicio", referencedColumnName = "idServicio")
+    @JoinColumn(name = "gym_idservicio", referencedColumnName = "idservicio")
     private Gym gym;
 
     @ManyToOne
-    @JoinColumn(name = "SPA_idServicio", referencedColumnName = "idServicio")
+    @JoinColumn(name = "spa_idservicio", referencedColumnName = "idservicio")
     private SPA spa;
 
     @ManyToOne
-    @JoinColumn(name = "Salones_idServicio", referencedColumnName = "idServicio")
+    @JoinColumn(name = "salones_idservicio", referencedColumnName = "idservicio")
     private Salones salon;
 
     public Horarios() {
     }
 
-    public Horarios(Integer idHorario, String dias, Date horaIncial, Date horaFinal, boolean ocupado, Piscina piscina, Gym gym, SPA spa, Salones salon) {
-        this.idHorario = idHorario;
+    public Horarios(Integer idhorario, String dias, Date horaincial, Date horafinal, boolean ocupado, Piscina piscina, Gym gym, SPA spa, Salones salon) {
+        this.idhorario = idhorario;
         this.dias = dias;
-        this.horaIncial = horaIncial;
-        this.horaFinal = horaFinal;
+        this.horaincial = horaincial;
+        this.horafinal = horafinal;
         this.ocupado = ocupado;
         this.piscina = piscina;
         this.gym = gym;
@@ -86,11 +86,11 @@ public class Horarios{
     }
 
     public Integer getIdHorario() {
-        return idHorario;
+        return idhorario;
     }
 
-    public void setIdHorario(Integer idHorario) {
-        this.idHorario = idHorario;
+    public void setIdHorario(Integer idhorario) {
+        this.idhorario = idhorario;
     }
 
     public String getDias() {
@@ -102,19 +102,19 @@ public class Horarios{
     }
 
     public Date getHoraIncial() {
-        return horaIncial;
+        return horaincial;
     }
 
-    public void setHoraIncial(Date horaIncial) {
-        this.horaIncial = horaIncial;
+    public void setHoraIncial(Date horaincial) {
+        this.horaincial = horaincial;
     }
 
-    public Date getHoraFinal() {
-        return horaFinal;
+    public Date getHorafinal() {
+        return horafinal;
     }
 
-    public void setHoraFinal(Date horaFinal) {
-        this.horaFinal = horaFinal;
+    public void setHorafinal(Date horafinal) {
+        this.horafinal = horafinal;
     }
 
     public boolean isOcupado() {
