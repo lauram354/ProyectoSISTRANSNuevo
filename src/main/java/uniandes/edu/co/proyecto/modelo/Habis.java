@@ -16,9 +16,8 @@ public class Habis {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_habitacion;
     private Boolean tv;
-    private Boolean miniBar;
+    private Boolean minibar;
     private Boolean cafetera;
-    private Integer numhabi;
 
     @ManyToOne
     @JoinColumn(name = "tiposhabi_idtipohabi", referencedColumnName = "idtipohabi")
@@ -31,12 +30,11 @@ public class Habis {
     public Habis()
     {;}
 
-    public Habis(Boolean tv, Boolean miniBar, Boolean cafetera, TiposHabi tipo, Integer numhabi) {
+    public Habis(Boolean tv, Boolean minibar, Boolean cafetera, TiposHabi tipo) {
         this.tv = tv;
-        this.miniBar = miniBar;
+        this.minibar = minibar;
         this.cafetera = cafetera;
         this.tipo = tipo;
-        this.numhabi = numhabi;
     }
     //GETTERS
     public Integer getId_habitacion() {
@@ -55,8 +53,8 @@ public class Habis {
         this.tipo = tipo;
     }
 
-    public Boolean getMiniBar() {
-        return miniBar;
+    public Boolean getMinibar() {
+        return minibar;
     }
 
     public Boolean getCafetera() {
@@ -73,24 +71,14 @@ public class Habis {
         this.tv = tv;
     }
 
-    public void setMiniBar(Boolean miniBar) {
-        this.miniBar = miniBar;
+    public void setMinibar(Boolean minibar) {
+        this.minibar = minibar;
     }
 
     public void setCafetera(Boolean cafetera) {
         this.cafetera = cafetera;
     }
 
-    public Integer getNumHabi() {
-        return numhabi;
-    }
 
-    public void setNumHabi(Integer numhabi) {
-        this.numhabi = numhabi;
-    }
-
-    
-    
-    
     
 }
