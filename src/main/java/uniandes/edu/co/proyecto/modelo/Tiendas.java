@@ -10,7 +10,7 @@ public class Tiendas {
 
     @EmbeddedId
     private TiendasPK pk;
-    private String estilo;
+    private String nombre;
  
 
     
@@ -19,9 +19,9 @@ public class Tiendas {
 
 
 
-    public Tiendas(TiendasPK pk, String estilo) {
+    public Tiendas(TiendasPK pk, String nombre) {
         this.pk = pk;
-        this.estilo = estilo;
+        this.nombre = nombre;
     }
 
 
@@ -38,14 +38,14 @@ public class Tiendas {
 
 
 
-    public String getEstilo() {
-        return estilo;
+    public String getnombre() {
+        return nombre;
     }
 
 
 
-    public void setEstilo(String estilo) {
-        this.estilo = estilo;
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
     }
 
 

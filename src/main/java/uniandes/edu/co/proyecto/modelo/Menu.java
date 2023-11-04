@@ -14,7 +14,7 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idproducto;
 
-    private Float costo;
+    private Float precio;
     private String producto;
 
     
@@ -24,8 +24,8 @@ public class Menu {
     public Menu()
     {;}
 
-    public Menu(Float costo, String nombreProducto) {
-        this.costo = costo;
+    public Menu(Float precio, String nombreProducto) {
+        this.precio = precio;
         this.producto = nombreProducto;
     }
 
@@ -34,8 +34,8 @@ public class Menu {
         return idproducto;
     }
 
-    public Float getCosto() {
-        return costo;
+    public Float getprecio() {
+        return precio;
     }
 
     public String getProducto() {
@@ -48,8 +48,8 @@ public class Menu {
         this.idproducto = idProducto;
     }
 
-    public void setCosto(Float costo) {
-        this.costo = costo;
+    public void setprecio(Float precio) {
+        this.precio = precio;
     }
 
     public void setProducto(String producto) {

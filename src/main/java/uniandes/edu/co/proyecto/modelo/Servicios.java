@@ -9,42 +9,39 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="servicios")
+@Table(name = "servicios")
 public class Servicios {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idservicio;
 
     private String tipo_servicio;
     private String descripcion;
     private float costo;
-    private String idtipo;
+    private String servicios_type;
 
-
-    @ManyToOne
-    @JoinColumn(name = "cuentas_idcuenta", referencedColumnName = "idcuenta")
-    private Cuentas idcuenta;
+  
 
     @ManyToOne
     @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles hotel;
 
-    //CONSTRUCTORS
+    // CONSTRUCTORS
 
-    public Servicios()
-    {;}
+    public Servicios() {
+        ;
+    }
 
-    public Servicios(String tipo, String descripcion, float costo, Cuentas idcuenta, String idtipo, Hoteles hotel) {
+    public Servicios(String tipo, String descripcion, float costo, String servicios_type, Hoteles hotel) {
         this.tipo_servicio = tipo;
-        this.descripcion =descripcion;
+        this.descripcion = descripcion;
         this.costo = costo;
-        this.idcuenta = idcuenta;
-        this.idtipo = idtipo;
+        this.servicios_type = servicios_type;
         this.hotel = hotel;
     }
 
-    //GETTERS
+    // GETTERS
 
     public Hoteles getHotel() {
         return hotel;
@@ -54,21 +51,14 @@ public class Servicios {
         this.hotel = hotel;
     }
 
-    public String getIdtipo() {
-        return idtipo;
+    public String getservicios_type() {
+        return servicios_type;
     }
 
-    public void setIdtipo(String idtipo) {
-        this.idtipo = idtipo;
+    public void setservicios_type(String servicios_type) {
+        this.servicios_type = servicios_type;
     }
 
-    public Cuentas getIdcuenta() {
-        return idcuenta;
-    }
-
-    public void setIdcuenta(Cuentas idcuenta) {
-        this.idcuenta = idcuenta;
-    }
 
     public Integer getIdservicio() {
         return idservicio;
@@ -85,8 +75,8 @@ public class Servicios {
     public float getCosto() {
         return costo;
     }
-    //SETTERS
-   
+    // SETTERS
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -102,5 +92,5 @@ public class Servicios {
     public void setTipo(String tipo) {
         this.tipo_servicio = tipo;
     }
-    
+
 }

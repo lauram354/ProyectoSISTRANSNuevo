@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,9 +18,9 @@ public class Reservas {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idreserva;
 
-    private Integer numpersonas;
-    private String fechainicial;
-    private String fechafinal;
+    private Integer cant_personas;
+    private Date  fecha_entrada;
+    private Date fecha_salida;
 
     @ManyToOne
     @JoinColumn(name = "hoteles_nombre", referencedColumnName = "nombre")
@@ -36,110 +38,109 @@ public class Reservas {
     @JoinColumn(name = "habis_id_habitacion", referencedColumnName = "id_habitacion")
     private Habis idHabi;
 
-    private boolean check_in;
-    private boolean check_out;
+
     //CONSTRUCTORS
     
     public Reservas()
     {;}
 
-    public Reservas(Integer numpersonas, String fechainicial, String fechafinal,
-            boolean check_in, boolean check_out, Planes tipoPlan, Cuentas cuenta, Habis habi, Hoteles nombre) {
-        this.numpersonas = numpersonas;
-        this.fechainicial = fechainicial;
-        this.fechafinal = fechafinal;
-        this.check_in = check_in;
-        this.check_out = check_out;
+
+    public Reservas(Integer idreserva, Integer cant_personas, Date fecha_entrada, Date fecha_salida,
+            Hoteles nombreHotel, Planes tipoPlan, Cuentas cuenta, Habis idHabi) {
+        this.idreserva = idreserva;
+        this.cant_personas = cant_personas;
+        this.fecha_entrada = fecha_entrada;
+        this.fecha_salida = fecha_salida;
+        this.nombreHotel = nombreHotel;
         this.tipoPlan = tipoPlan;
         this.cuenta = cuenta;
-        this.idHabi = habi;
-        this.nombreHotel = nombre;
+        this.idHabi = idHabi;
     }
 
-    //GETTERS
 
     public Integer getIdreserva() {
         return idreserva;
     }
 
-    public Hoteles getNombreHotel() {
-        return nombreHotel;
-    }
-
-    public void setNombreHotel(Hoteles nombreHotel) {
-        this.nombreHotel = nombreHotel;
-    }
-
-    public Habis getIdHabi() {
-        return idHabi;
-    }
-
-    public void setIdHabi(Habis idHabi) {
-        this.idHabi = idHabi;
-    }
-
-    public Cuentas getCuenta() {
-        return cuenta;
-    }
-
-    public void setCuenta(Cuentas cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    public Planes getTipoPlan() {
-        return tipoPlan;
-    }
-
-    public void setTipoPlan(Planes tipoPlan) {
-        this.tipoPlan = tipoPlan;
-    }
-
-    public Integer getNumpersonas() {
-        return numpersonas;
-    }
-
-    public String getFechainicial() {
-        return fechainicial;
-    }
-
-    public String getFechafinal() {
-        return fechafinal;
-    }
-
-
-    public boolean getCheck_in() {
-        return check_in;
-    }
-
-    public boolean Check_out() {
-        return check_out;
-    }
-    
-    //SETTERS
 
     public void setIdreserva(Integer idreserva) {
         this.idreserva = idreserva;
     }
 
-    public void setNumpersonas(Integer numpersonas) {
-        this.numpersonas = numpersonas;
+
+    public Integer getCant_personas() {
+        return cant_personas;
     }
 
-    public void setFechainicial(String fechainicial) {
-        this.fechainicial = fechainicial;
+
+    public void setCant_personas(Integer cant_personas) {
+        this.cant_personas = cant_personas;
     }
 
-    public void setFechafinal(String fechafinal) {
-        this.fechafinal = fechafinal;
+
+    public Date getFecha_entrada() {
+        return fecha_entrada;
     }
 
-    public void setCheck_in(boolean check_in) {
-        this.check_in = check_in;
+
+    public void setFecha_entrada(Date fecha_entrada) {
+        this.fecha_entrada = fecha_entrada;
     }
 
-    public void setCheck_out(boolean check_out) {
-        this.check_out = check_out;
+
+    public Date getFecha_salida() {
+        return fecha_salida;
     }
+
+
+    public void setFecha_salida(Date fecha_salida) {
+        this.fecha_salida = fecha_salida;
+    }
+
+
+    public Hoteles getNombreHotel() {
+        return nombreHotel;
+    }
+
+
+    public void setNombreHotel(Hoteles nombreHotel) {
+        this.nombreHotel = nombreHotel;
+    }
+
+
+    public Planes getTipoPlan() {
+        return tipoPlan;
+    }
+
+
+    public void setTipoPlan(Planes tipoPlan) {
+        this.tipoPlan = tipoPlan;
+    }
+
+
+    public Cuentas getCuenta() {
+        return cuenta;
+    }
+
+
+    public void setCuenta(Cuentas cuenta) {
+        this.cuenta = cuenta;
+    }
+
+
+    public Habis getIdHabi() {
+        return idHabi;
+    }
+
+
+    public void setIdHabi(Habis idHabi) {
+        this.idHabi = idHabi;
+    }
+
+
+
+ 
+   
 
 }
 

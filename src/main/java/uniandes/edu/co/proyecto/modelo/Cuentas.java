@@ -17,46 +17,34 @@ public class Cuentas {
     @GeneratedValue(strategy=GenerationType.AUTO)
 
     private Integer idcuenta;
-    private Boolean pagado;
-    private Date fecha;
+    private Float valor;
     //CONSTRUCTORS
 
     public Cuentas()
     {;}
 
-    public Cuentas(Boolean pagado, Date fecha) {
-        this.pagado = pagado;
-        this.fecha = fecha;
+    public Cuentas(Integer idcuenta, Float valor) {
+        this.idcuenta = idcuenta;
+        this.valor = valor;
     }
 
-    //GETTERS
-
-    public Integer getIdCuenta() {
+    public Integer getIdcuenta() {
         return idcuenta;
     }
 
-    public Boolean getPagado() {
-        return pagado;
+    public void setIdcuenta(Integer idcuenta) {
+        this.idcuenta = idcuenta;
     }
 
-
-    public Date getFecha() {
-        return fecha;
+    public Float getValor() {
+        return valor;
     }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+
 
     
-    //SETTERS
-
-    public void setIdCuenta(Integer idCuenta) {
-        this.idcuenta = idCuenta;
-    }
-
-    public void setPagado(Boolean pagado) {
-        this.pagado = pagado;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
 }

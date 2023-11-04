@@ -11,16 +11,28 @@ public class Utensilios {
     @EmbeddedId
     private UtensiliosPK pk;
 
+    private String tipo;
     private Float costodanio;
+
+
+    public String getTipo() {
+        return tipo;
+    }
+
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
 
     public Utensilios()
     {;}
 
 
-    public Utensilios(UtensiliosPK pk, Float costodanio) {
+    public Utensilios(UtensiliosPK pk, Float costodanio, String tipo) {
         this.pk = pk;
         this.costodanio = costodanio;
+        this.tipo = tipo;
     }
 
 
