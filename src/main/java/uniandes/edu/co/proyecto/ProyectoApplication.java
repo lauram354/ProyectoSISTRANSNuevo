@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.usuarios;
+import uniandes.edu.co.proyecto.modelo.Usuarios;
 import uniandes.edu.co.proyecto.repositorio.UsuariosRepository;
 
 @SpringBootApplication
@@ -22,9 +22,9 @@ public class ProyectoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String ... arg){
-		Collection<usuarios> usuarios = usuariosRepository.darUsuarios();
-		usuarios us = new usuarios();
-		for (usuarios u: usuarios){
+		Collection<Usuarios> usuarios = usuariosRepository.darUsuarios();
+		Usuarios us = new Usuarios();
+		for (Usuarios u: usuarios){
 			us = u;
 		}
 		System.out.println(us.getNombreUsuario());

@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class usuarios {
+public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +26,10 @@ public class usuarios {
     @JoinColumn(name = "tiposusu_idtipo", referencedColumnName = "idtipo")
     private tiposUsu tipoUsu;
 
-    public usuarios()
+    public Usuarios()
     {;}
 
-    public usuarios(Integer id, String tipoId, String nombreUsuario, String email, String login, String contrasenia, tiposUsu tipo) {
+    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String login, String contrasenia, tiposUsu tipo) {
         this.id = id;
         this.tipoid = tipoId;
         this.nombre = nombreUsuario;
