@@ -19,7 +19,6 @@ public class Usuarios {
     private String tipo_id;
     private String nombre;
     private String eMail;
-    private String rol;
     private String contrasenia;
     private String login;
 
@@ -30,12 +29,11 @@ public class Usuarios {
     public Usuarios()
     {;}
 
-    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String rol, String login, String contrasenia, tiposUsu tipo) {
+    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String login, String contrasenia, tiposUsu tipo) {
         this.id = id;
         this.tipo_id = tipoId;
         this.nombre = nombreUsuario;
         this.eMail = email;
-        this.rol = rol;
         this.contrasenia = contrasenia;
         this.login = login;
         this.tipoUsu = tipo;
@@ -83,10 +81,6 @@ public class Usuarios {
         return eMail;
     }
 
-    public String getRol() {
-        return rol;
-    }
-
 
     //SETTERS
 
@@ -104,10 +98,6 @@ public class Usuarios {
 
     public void setEmail(String email) {
         this.eMail = email;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 
 }
