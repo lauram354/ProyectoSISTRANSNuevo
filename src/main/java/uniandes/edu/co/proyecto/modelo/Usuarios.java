@@ -9,31 +9,31 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
-public class Usuarios {
+@Table(name = "usuarios")
+public class usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String tipo_id;
+    private String tipoid;
     private String nombre;
-    private String eMail;
+    private String email;
     private String contrasenia;
     private String login;
 
     @ManyToOne
-    @JoinColumn(name = "tiposUsu_idTipo", referencedColumnName = "idTipo")
+    @JoinColumn(name = "tiposusu_idtipo", referencedColumnName = "idtipo")
     private tiposUsu tipoUsu;
 
-    public Usuarios()
+    public usuarios()
     {;}
 
-    public Usuarios(Integer id, String tipoId, String nombreUsuario, String email, String login, String contrasenia, tiposUsu tipo) {
+    public usuarios(Integer id, String tipoId, String nombreUsuario, String email, String login, String contrasenia, tiposUsu tipo) {
         this.id = id;
-        this.tipo_id = tipoId;
+        this.tipoid = tipoId;
         this.nombre = nombreUsuario;
-        this.eMail = email;
+        this.email = email;
         this.contrasenia = contrasenia;
         this.login = login;
         this.tipoUsu = tipo;
@@ -70,7 +70,7 @@ public class Usuarios {
     }
 
     public String getTipoId() {
-        return tipo_id;
+        return tipoid;
     }
 
     public String getNombreUsuario() {
@@ -78,7 +78,7 @@ public class Usuarios {
     }
 
     public String getEmail() {
-        return eMail;
+        return email;
     }
 
 
@@ -89,7 +89,7 @@ public class Usuarios {
     }
 
     public void setTipoId(String tipoId) {
-        this.tipo_id = tipoId;
+        this.tipoid = tipoId;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
@@ -97,7 +97,7 @@ public class Usuarios {
     }
 
     public void setEmail(String email) {
-        this.eMail = email;
+        this.email = email;
     }
 
 }

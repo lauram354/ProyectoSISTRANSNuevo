@@ -11,13 +11,13 @@ public class usuHotelPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "Usuarios_id", referencedColumnName = "id")
-    private Usuarios idUsuario;
+    private usuarios idUsuario;
 
     @ManyToOne
     @JoinColumn(name = "Hoteles_nombre", referencedColumnName = "nombre")
     private Hoteles nombreHotel;
 
-    public usuHotelPK(Usuarios idUsuario, Hoteles nombreHotel) {
+    public usuHotelPK(usuarios idUsuario, Hoteles nombreHotel) {
         super();
         this.idUsuario = idUsuario;
         this.nombreHotel = nombreHotel;
@@ -30,13 +30,13 @@ public class usuHotelPK implements Serializable {
 
 
 
-    public Usuarios getIdUsuario() {
+    public usuarios getIdUsuario() {
         return idUsuario;
     }
 
 
 
-    public void setIdUsuario(Usuarios idUsuario) {
+    public void setIdUsuario(usuarios idUsuario) {
         this.idUsuario = idUsuario;
     }
 

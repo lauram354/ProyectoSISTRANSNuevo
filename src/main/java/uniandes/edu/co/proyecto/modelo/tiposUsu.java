@@ -9,12 +9,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tiposUsu")
+@Table(name="tiposusu")
 public class tiposUsu {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idTipo;
+    private Integer idtipo;
     private String tipo;
 
     
@@ -23,18 +23,18 @@ public class tiposUsu {
 
 
     public tiposUsu(Integer idTipo, String tipo) {
-        this.idTipo = idTipo;
+        this.idtipo = idTipo;
         this.tipo = tipo;
     }
 
 
     public Integer getIdTipo() {
-        return idTipo;
+        return idtipo;
     }
 
 
     public void setIdTipo(Integer idTipo) {
-        this.idTipo = idTipo;
+        this.idtipo = idTipo;
     }
 
 

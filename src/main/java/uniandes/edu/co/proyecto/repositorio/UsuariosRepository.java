@@ -8,16 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Usuarios;
+import uniandes.edu.co.proyecto.modelo.usuarios;
 
-public interface UsuariosRepository extends JpaRepository<Usuarios, Integer>{
+public interface UsuariosRepository extends JpaRepository<usuarios, Integer>{
 
     //RF1
     @Query(value = "SELECT * FROM USUARIOS", nativeQuery = true)
-    Collection<Usuarios> darUsuarios();
+    Collection<usuarios> darUsuarios();
     
     @Query(value = "SELECT * FROM USUARIOS WHERE ID = :id", nativeQuery = true)
-    Usuarios darUsuario(@Param("id") int id);
+    usuarios darUsuario(@Param("id") int id);
 
     @Modifying
     @Transactional
