@@ -44,7 +44,7 @@ public class Reservas {
     {;}
 
     public Reservas(Integer numPersonas, String fechaInicial, String fechaFinal,
-            boolean check_in, boolean check_out, Planes tipoPlan, Cuentas cuenta, Habis habi) {
+            boolean check_in, boolean check_out, Planes tipoPlan, Cuentas cuenta, Habis habi, Hoteles nombre) {
         this.numPersonas = numPersonas;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
@@ -53,12 +53,21 @@ public class Reservas {
         this.tipoPlan = tipoPlan;
         this.cuenta = cuenta;
         this.idHabi = habi;
+        this.nombreHotel = nombre;
     }
 
     //GETTERS
 
     public Integer getIdReserva() {
         return idReserva;
+    }
+
+    public Hoteles getNombreHotel() {
+        return nombreHotel;
+    }
+
+    public void setNombreHotel(Hoteles nombreHotel) {
+        this.nombreHotel = nombreHotel;
     }
 
     public Habis getIdHabi() {
