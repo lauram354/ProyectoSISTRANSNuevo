@@ -12,7 +12,7 @@ import uniandes.edu.co.proyecto.modelo.Usuarios;
 
 public interface UsuariosRepository extends JpaRepository<Usuarios, Integer>{
 
-    //RF1
+    //RF2
     @Query(value = "SELECT * FROM USUARIOS", nativeQuery = true)
     Collection<Usuarios> darUsuarios();
     

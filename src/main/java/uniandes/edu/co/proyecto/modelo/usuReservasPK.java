@@ -15,9 +15,9 @@ public class usuReservasPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "reservas_idreserva", referencedColumnName = "idreserva")
-    private Hoteles idreserva;
+    private Reservas idreserva;
 
-    public usuReservasPK(Usuarios idusuario, Hoteles idreserva) {
+    public usuReservasPK(Usuarios idusuario, Reservas idreserva) {
         super();
         this.idusuario = idusuario;
         this.idreserva = idreserva;
@@ -42,17 +42,15 @@ public class usuReservasPK implements Serializable {
 
 
 
-    public Hoteles getIdreserva() {
+    public Reservas getIdreserva() {
         return idreserva;
     }
 
 
 
-    public void setIdreserva(Hoteles idreserva) {
+    public void setIdreserva(Reservas idreserva) {
         this.idreserva = idreserva;
     }
 
 
-
-   
 }
