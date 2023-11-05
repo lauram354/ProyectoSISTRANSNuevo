@@ -27,10 +27,10 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
     @Modifying
     @Transactional
     @Query(value = "update servicios set descripcion = :descripcion, costo = :costo, tipo_servicio = :tiposerv, hoteles_nombre = :hotel, servicios_type = :type where idservicio = :id", nativeQuery = true)
-    void actualizarUsuario(@Param("id") int id, @Param("descripcion") String descripcion, @Param("costo") Float costo, @Param("tiposerv") String tiposerv, @Param("hotel") String hotel, @Param("type") String type);
+    void actualizarServicio(@Param("id") int id, @Param("descripcion") String descripcion, @Param("costo") Float costo, @Param("tiposerv") String tiposerv, @Param("hotel") String hotel, @Param("type") String type);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM servicios WHERE idservicio = :id", nativeQuery = true)
-    void eliminarUsuario(@Param("id") int id);
+    void eliminarServicio(@Param("id") int id);
 } 
