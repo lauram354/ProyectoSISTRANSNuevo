@@ -32,5 +32,5 @@ public interface habisRepository extends JpaRepository<Habis, Integer>{
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Habis WHERE id_habitacion = :id", nativeQuery = true)
-    void eliminarUsuario(@Param("id") int id);
+    void eliminarHabitacion(@Param("id") int id);
 } 
