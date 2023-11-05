@@ -21,12 +21,12 @@ public interface tiposHabisRepository extends JpaRepository<TiposHabi, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO tiposhabi(idtipohabi,tipo, hoteles_nombre, costo_alojamiento, capacidad) VALUES(TIPOSHABI_IDTIPOHABI_SEQ.nextval, tipo = :tipo, hoteles_nombre = :hotel, costo_alojamiento = :costo, capacidad = :capacidad);", nativeQuery = true)
+    @Query(value = "INSERT INTO tiposhabi(idtipohabi,tipo, hoteles_nombre, costo_alojamiento, capacidad) VALUES(TIPOSHABI_IDTIPOHABI_SEQ.nextval, tipo = :tipo, hoteles_nombre = :hotel, costo_alojamiento = :costo, capacidad = :capacidad)", nativeQuery = true)
     void insertarTipoHabi(@Param("tipo") String tipo, @Param("hotel") String hotel, @Param("costo") Float costo, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "update tiposhabi set tipo = :tipo, capacidad = :capacidad , costo_alojamiento = :costo where idtipohabi = :idhabi;", nativeQuery = true)
+    @Query(value = "update tiposhabi set tipo = :tipo, capacidad = :capacidad , costo_alojamiento = :costo where idtipohabi = :idhabi", nativeQuery = true)
     void actualizarTipoHabi(@Param("idhabi") int idhabi, @Param("tipo") String tipo, @Param("capacidad") Integer capacidad, @Param("costo") Float costo);
 
     @Modifying

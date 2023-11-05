@@ -18,7 +18,7 @@ public interface planesRepository extends JpaRepository<Planes, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Planes( idTipoPlan,tipo_plan,descuento,Hoteles_nombre) VALUES(PLANES_IDTIPOPLAN_SEQ.nextval, tipo_plan = :tipoPlan, descuento = :descuento, Hoteles_nombre = :hotel);" , nativeQuery = true)
+    @Query(value = "INSERT INTO Planes( idTipoPlan,tipo_plan,descuento,Hoteles_nombre) VALUES(PLANES_IDTIPOPLAN_SEQ.nextval, tipo_plan = :tipoPlan, descuento = :descuento, Hoteles_nombre = :hotel)" , nativeQuery = true)
     void insertarPlanes(@Param("tipoPlan") String tipoPlan, @Param("descuento") Float descuento, @Param("hotel") String hotel);
 
     @Modifying

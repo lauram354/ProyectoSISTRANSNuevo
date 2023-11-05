@@ -21,12 +21,12 @@ public interface habisRepository extends JpaRepository<Habis, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Habis(id_habitacion,tv,cafetera, minibar, TiposHabi_idTipoHabi) VALUES(HABIS_ID_HABITACION_SEQ.nextval, tv = :tv, cafetera = :cafetera, minibar = :minibar, TiposHabi_idTipoHabi = :tipohabi);", nativeQuery = true)
+    @Query(value = "INSERT INTO Habis(id_habitacion,tv,cafetera, minibar, TiposHabi_idTipoHabi) VALUES(HABIS_ID_HABITACION_SEQ.nextval, tv = :tv, cafetera = :cafetera, minibar = :minibar, TiposHabi_idTipoHabi = :tipohabi)", nativeQuery = true)
     void insertarHabitacion(@Param("tv") Boolean tv, @Param("cafetera") Boolean cafetera, @Param("minibar") Boolean minibar, @Param("tipohabi") Integer tipohabis);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Habis SET tv = :tv ,cafetera = :cafetera, minibar = :minibar, TiposHabi_idTipoHabi = :tipohabi WHERE id_habitacion = :idhabi;", nativeQuery = true)
+    @Query(value = "UPDATE Habis SET tv = :tv ,cafetera = :cafetera, minibar = :minibar, TiposHabi_idTipoHabi = :tipohabi WHERE id_habitacion = :idhabi", nativeQuery = true)
     void actualizarHabitacion(@Param("tv") Boolean tv, @Param("cafetera") Boolean cafetera, @Param("minibar") Boolean minibar, @Param("tipohabi") Integer tipohabis, @Param("idhabi") Integer idhabi);
 
     @Modifying
