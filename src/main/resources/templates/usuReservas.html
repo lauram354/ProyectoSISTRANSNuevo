@@ -27,6 +27,7 @@
                     <td th:text="${ur.getCheckin()}"></td>
                     <td th:text="${ur.getCheckout()}"></td>
                     <td>
+                        <a th:href="@{usuReservas/{id}/edit(id=${ur.getPk().getIdusuario().getIdUsuario()})}">Editar</a>
                         <a th:href="@{'/usuReservas/' + ${ur.getPk().getIdusuario().getIdUsuario()} + '/delete/' + ${ur.getPk().getIdreserva().getIdreserva()}}" onclick="return confirm('¿Estas seguro de borrar esta reserva?')">Borrar</a>
                     </td>
                 </tr>
