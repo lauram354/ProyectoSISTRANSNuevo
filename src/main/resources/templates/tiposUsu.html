@@ -23,8 +23,8 @@
                     <td th:text="${tu.getIdTipo()}"></td>
                     <td th:text="${tu.getTipo()}"></td>
                     <td>
-                        <a th:href="@{tiposUsuarios/{id}/edit(idtipo=${tu.getIdTipo()})}">Editar</a>
-                        <a th:href="@{tiposUsuarios/{id}/delete(idtipo=${tu.getIdTipo()})}" onclick="return confirm('¿Estas seguro de borrar este tipo de usuario?')">Borrar</a>
+                        <a th:href="@{tiposUsuarios/{id}/edit(idtipo=${tu.getTipo()})}">Editar</a>
+                        <a th:href="@{tiposUsuarios/{id}/delete(idtipo=${tu.getTipo()})}" onclick="return confirm('¿Estas seguro de borrar este tipo de usuario?')">Borrar</a>
                     </td>
                 </tr>
             </th:block>

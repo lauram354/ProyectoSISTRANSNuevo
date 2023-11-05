@@ -36,7 +36,7 @@ public class tiposUsuariosController {
     }
 
     @GetMapping("/tiposUsu/{id}/edit")
-    public String tipoUsuarioEditarForm(@PathVariable("idtipo") int idtipo, Model model) {
+    public String tipoUsuarioEditarForm(@PathVariable("id") int idtipo, Model model) {
         tiposUsu tipoUsuario = tiposUsuarioRepository.darTipoUsuario(idtipo);
         if(tipoUsuario != null) {
             model.addAttribute("tiposUsu", tipoUsuario);
@@ -47,13 +47,13 @@ public class tiposUsuariosController {
     }
 
     @PostMapping("/tiposUsu/{id}/edit/save")
-    public String tipoUsuarioEditarGuardar(@PathVariable("idtipo") int idtipo, @ModelAttribute tiposUsu tipoUsuario) {
+    public String tipoUsuarioEditarGuardar(@PathVariable("id") int idtipo, @ModelAttribute tiposUsu tipoUsuario) {
         tiposUsuarioRepository.actualizarTipoUsuario(idtipo, tipoUsuario.getTipo());
         return "redirect:/tiposUsu";
     }
 
     @GetMapping("/tiposUsu/{id}/delete")
-    public String tipoUsuarioEliminar(@PathVariable("tipoUsu") String tipoUsu) {
+    public String tipoUsuarioEliminar(@PathVariable("id") String tipoUsu) {
         tiposUsuarioRepository.eliminarTipoUsuario(tipoUsu);
         return "redirect:/tiposUsu";
     }
