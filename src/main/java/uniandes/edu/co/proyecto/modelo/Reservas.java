@@ -27,8 +27,8 @@ public class Reservas {
     private Hoteles nombreHotel;
 
     @ManyToOne
-    @JoinColumn(name = "planes_tipo_plan", referencedColumnName = "tipo_plan")
-    private Planes tipoPlan;
+    @JoinColumn(name = "planes_idtipoplan", referencedColumnName = "idtipoplan")
+    private Planes idtipoplan;
 
     @ManyToOne
     @JoinColumn(name = "cuentas_idcuenta", referencedColumnName = "idcuenta")
@@ -46,13 +46,13 @@ public class Reservas {
 
 
     public Reservas(Integer idreserva, Integer cant_personas, Date fecha_entrada, Date fecha_salida,
-            Hoteles nombreHotel, Planes tipoPlan, Cuentas cuenta, Habis idHabi) {
+            Hoteles nombreHotel, Planes idtipoplan, Cuentas cuenta, Habis idHabi) {
         this.idreserva = idreserva;
         this.cant_personas = cant_personas;
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
         this.nombreHotel = nombreHotel;
-        this.tipoPlan = tipoPlan;
+        this.idtipoplan = idtipoplan;
         this.cuenta = cuenta;
         this.idHabi = idHabi;
     }
@@ -108,13 +108,13 @@ public class Reservas {
     }
 
 
-    public Planes getTipoPlan() {
-        return tipoPlan;
+    public Planes getTipo_plan() {
+        return idtipoplan;
     }
 
 
-    public void setTipoPlan(Planes tipoPlan) {
-        this.tipoPlan = tipoPlan;
+    public void setTipo_plan(Planes idtipoplan) {
+        this.idtipoplan = idtipoplan;
     }
 
 
