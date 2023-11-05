@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos Habitaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <h1>Lista de Tipos de Habitaciones</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>TIPO</th>
+                    <th>HOTEL</th>
+                    <th>COSTO ALOJAMIENTO</th>
+                    <th>CAPACIDAD</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <th:block th:each="tipoHabi:${TiposHabi}">
+                <tr>
+                    <td th:text="${tipoHabi.getIdTipoHabi()}"></td>
+                    <td th:text="${tipoHabi.getTipo()}"></td>
+                    <td th:text="${tipoHabi.getNombre()}"></td>
+                    <td th:text="${tipoHabi.getCosto_alojamiento()}"></td>
+                    <td th:text="${tipoHabi.getCapacidad()}"></td>
+                    <td>
+                        <a th:href="@{tiposHabis/{id}/edit(idtipohabi=${tipoHabi.getIdTipoHabi()})}">Editar</a>
+                        <a th:href="@{tiposHabis/{id}/delete(idtipohabi=${tipoHabi.getIdTipoHabi()})}" onclick="return confirm('¿Estas seguro de borrar este tipo de usuario?')">Borrar</a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver Atrás</a>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -9,8 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.TiposHabi;
-import uniandes.edu.co.proyecto.modelo.Usuarios;
-import uniandes.edu.co.proyecto.modelo.tiposUsu;
 
 public interface tiposHabisRepository extends JpaRepository<TiposHabi, Integer>{
 
@@ -18,6 +16,8 @@ public interface tiposHabisRepository extends JpaRepository<TiposHabi, Integer>{
     @Query(value = "SELECT * FROM tiposhabi", nativeQuery = true)
     Collection<TiposHabi> darTiposHabi();
 
+    @Query(value = "SELECT * FROM tiposhabi WHERE idtipohabi = :idtipohabi", nativeQuery = true)
+    TiposHabi darTipoHabi(@Param("idtipohabi") int idtipohabi);
 
     @Modifying
     @Transactional
