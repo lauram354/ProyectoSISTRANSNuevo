@@ -61,11 +61,11 @@ public class serviciosController {
     }
 
     // RFC1 // 
-     @GetMapping("/servicios")
+     @GetMapping("/servicios/recolectadoPorHabitacion")
     public String dineroRecolectadoServiciosHabitacion(Model model) {
         List<Object[]> dineroRecolectadoPorHabitacion = serviciosRepository.calcularDineroRecolectadoPorHabitacionEnUltimoAnio();
         model.addAttribute("dineroRecolectadoPorHabitacion", dineroRecolectadoPorHabitacion);
-        return "servicios";
+        return "recolectadoPorHabitacion";
     
 }
 
