@@ -18,8 +18,8 @@ public class Horarios{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idhorario;
     private String dias;
-    private Date horaincial;
-    private Date horafinal;
+    private String horaincial;
+    private String horafinal;
     private boolean ocupado;
 
     @ManyToOne
@@ -41,7 +41,7 @@ public class Horarios{
     public Horarios() {
     }
 
-    public Horarios(Integer idhorario, String dias, Date horaincial, Date horafinal, boolean ocupado, Piscina piscina, Gym gym, SPA spa, Salones salon) {
+    public Horarios(Integer idhorario, String dias, String horaincial, String horafinal, boolean ocupado, Piscina piscina, Gym gym, SPA spa, Salones salon) {
         this.idhorario = idhorario;
         this.dias = dias;
         this.horaincial = horaincial;
@@ -101,19 +101,19 @@ public class Horarios{
         this.dias = dias;
     }
 
-    public Date getHoraIncial() {
+    public String getHoraIncial() {
         return horaincial;
     }
 
-    public void setHoraIncial(Date horaincial) {
+    public void setHoraIncial(String horaincial) {
         this.horaincial = horaincial;
     }
 
-    public Date getHorafinal() {
+    public String getHorafinal() {
         return horafinal;
     }
 
-    public void setHorafinal(Date horafinal) {
+    public void setHorafinal(String horafinal) {
         this.horafinal = horafinal;
     }
 
