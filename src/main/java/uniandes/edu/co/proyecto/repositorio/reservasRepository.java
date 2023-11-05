@@ -34,4 +34,5 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
     @Transactional
     @Query(value = "DELETE FROM reservas WHERE idreserva = :id", nativeQuery = true)
     void eliminarReserva(@Param("id") int id);
+    
 } 
