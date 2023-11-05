@@ -9,12 +9,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Planes;
+import uniandes.edu.co.proyecto.modelo.Usuarios;
 
 public interface planesRepository extends JpaRepository<Planes, Integer>{
 
     //RF6
     @Query(value = "SELECT * FROM planes", nativeQuery = true)
     Collection<Planes> darPlanes();
+
+    @Query(value = "SELECT * FROM planes WHERE idtipoplan = :id", nativeQuery = true)
+    Planes darPlan(@Param("id") int id);
 
     @Modifying
     @Transactional
@@ -24,11 +28,11 @@ public interface planesRepository extends JpaRepository<Planes, Integer>{
     @Modifying
     @Transactional
     @Query(value = "update planes set tipo_plan = :tipoPlan, descuento = :descuento WHERE idtipoplan = :idplan", nativeQuery = true)
-    void actualizarPlan(@Param("tipoPlan") String tipoPlan, @Param("descuento") Integer descuento, @Param("idplan") Integer idplan);
+    void actualizarPlan(@Param("tipoPlan") String tipoPlan, @Param("descuento") Float descuento, @Param("idplan") Integer idplan);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM planes WHERE idtipoplan = :idplan", nativeQuery = true)
-    void eliminarTipoUsuario(@Param("idplan") Integer idplan);
+    void eliminarPlan(@Param("idplan") Integer idplan);
 } 
 
