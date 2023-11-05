@@ -29,10 +29,10 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     @Modifying
     @Transactional
     @Query(value = "UPDATE consumos SET pagado = :pagado, costofinal = :costofinal, cuentas_idcuenta = :idcuenta, fecha = :fecha, habis_id_habitacion = :habi WHERE idconsumo = :id", nativeQuery = true)
-    void actualizarReservaServ(@Param("id") int id, @Param("pagado") Boolean pagado, @Param("costofinal") Float costofinal, @Param("idcuenta") Integer idcuenta, @Param("fecha") Date fecha, @Param("habi") int habi);
+    void actualizarConsumo(@Param("id") int id, @Param("pagado") Boolean pagado, @Param("costofinal") Float costofinal, @Param("idcuenta") Integer idcuenta, @Param("fecha") Date fecha, @Param("habi") int habi);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM consumos WHERE idconsumo = :id", nativeQuery = true)
-    void eliminarReservaServ(@Param("id") int id);
+    void eliminarConsumo(@Param("id") int id);
 } 
