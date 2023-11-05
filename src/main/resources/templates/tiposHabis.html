@@ -21,11 +21,11 @@
                 </tr>
             </thead>
 
-            <th:block th:each="tipoHabi:${TiposHabi}">
+            <th:block th:each="tipoHabi:${tiposHabis}">
                 <tr>
                     <td th:text="${tipoHabi.getIdTipoHabi()}"></td>
                     <td th:text="${tipoHabi.getTipo()}"></td>
-                    <td th:text="${tipoHabi.getNombre()}"></td>
+                    <td th:text="${tipoHabi.getNombre().getNombreHotel()}"></td>
                     <td th:text="${tipoHabi.getCosto_alojamiento()}"></td>
                     <td th:text="${tipoHabi.getCapacidad()}"></td>
                     <td>
