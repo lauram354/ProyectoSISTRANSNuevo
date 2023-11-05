@@ -12,7 +12,7 @@ import uniandes.edu.co.proyecto.modelo.Servicios;
 
 public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
 
-    //RF2
+    //RF5
     @Query(value = "select * from servicios", nativeQuery = true)
     Collection<Servicios> darServicios();
     
