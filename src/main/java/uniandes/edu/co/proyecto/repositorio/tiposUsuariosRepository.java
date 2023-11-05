@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Usuarios;
 import uniandes.edu.co.proyecto.modelo.tiposUsu;
 
 public interface tiposUsuariosRepository extends JpaRepository<tiposUsu, Integer>{
@@ -17,6 +16,8 @@ public interface tiposUsuariosRepository extends JpaRepository<tiposUsu, Integer
     @Query(value = "SELECT * FROM tiposusu", nativeQuery = true)
     Collection<tiposUsu> darTiposUsu();
 
+    @Query(value = "SELECT * FROM tiposusu WHERE idtipo = :idtipo", nativeQuery = true)
+    tiposUsu darTipoUsuario(@Param("idtipo") int idtipo);
 
     @Modifying
     @Transactional
