@@ -23,15 +23,15 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
     @Modifying
     @Transactional
     @Query(value = "insert into reservas (idreserva, fecha_entrada, fecha_salida, cant_personas, habis_id_habitacion, cuentas_idcuenta, planes_idtipoplan, hoteles_nombre) values (reservas_idreserva_seq.nextval, fecha_entrada = :fechaentrada, fecha_salida = :fechasalida, cant_personas = :cant, habias_id_habitacion = :habi, cuentas_idcuenta = :cuenta, planes_idtipoplan = :plan, hoteles_nombre = :hotel)", nativeQuery = true)
-    void insertarUsuario(@Param("fechaentrada") Date fechaentrada, @Param("fechasalida") Date fechasalida, @Param("cant") Integer cant, @Param("habi") Integer habi, @Param("cuenta") Integer cuenta, @Param("plan") int plan,  @Param("hotel") String hotel);
+    void insertarReserva(@Param("fechaentrada") Date fechaentrada, @Param("fechasalida") Date fechasalida, @Param("cant") Integer cant, @Param("habi") Integer habi, @Param("cuenta") Integer cuenta, @Param("plan") int plan,  @Param("hotel") String hotel);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE reservas SET fecha_entrada = :fechaentrada, fecha_salida = :fechasalida, cant_personas = :cant, habias_id_habitacion = :habi, cuentas_idcuenta = :cuenta, planes_idtipoplan = :plan, hoteles_nombre = :hotel WHERE idreserva = :id", nativeQuery = true)
-    void actualizarUsuario(@Param("id") int id, @Param("fechaentrada") Date fechaentrada, @Param("fechasalida") Date fechasalida, @Param("cant") Integer cant, @Param("habi") Integer habi, @Param("cuenta") Integer cuenta, @Param("plan") int plan,  @Param("hotel") String hotel);
+    void actualizarReserva(@Param("id") int id, @Param("fechaentrada") Date fechaentrada, @Param("fechasalida") Date fechasalida, @Param("cant") Integer cant, @Param("habi") Integer habi, @Param("cuenta") Integer cuenta, @Param("plan") int plan,  @Param("hotel") String hotel);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM reservas WHERE idreserva = :id", nativeQuery = true)
-    void eliminarUsuario(@Param("id") int id);
+    void eliminarReserva(@Param("id") int id);
 } 
