@@ -24,7 +24,7 @@ public interface reservasServRepository extends JpaRepository<reservaServ, Integ
     @Modifying
     @Transactional
     @Query(value = "insert into reservaserv (idreserva, usuarios_id, consumos_idconsumo, servicios_idservicio) values (reservaserv_idreserva_seq.nextval, usuarios_id = :usuarioid, consumos_idconsumo = :consumo, servicios_idservicio = :idserv)", nativeQuery = true)
-    void insertarReservaServ(@Param("usuarioid") int usuarioid, @Param("consumo") Integer consumo, @Param("idserv") Integer idserv);
+    void insertarReservaServ(@Param("usuarioid") Integer usuarioid, @Param("consumo") Integer consumo, @Param("idserv") Integer idserv);
 
     @Modifying
     @Transactional
@@ -35,4 +35,5 @@ public interface reservasServRepository extends JpaRepository<reservaServ, Integ
     @Transactional
     @Query(value = "DELETE FROM reservaserv WHERE idreserva = :id", nativeQuery = true)
     void eliminarReservaServ(@Param("id") int id);
+
 } 
