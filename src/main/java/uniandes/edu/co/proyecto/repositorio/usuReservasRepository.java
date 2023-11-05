@@ -17,6 +17,9 @@ public interface usuReservasRepository extends JpaRepository<usuReservas, Intege
     //RF9 y RF11
     @Query(value = "SELECT * FROM usuReservas", nativeQuery = true)
     Collection<usuReservas> darUsuReservas();
+
+    @Query(value = "SELECT * FROM usuReservas WHERE usuarios_id = :id", nativeQuery = true)
+    usuReservas darUsuReserva(@Param("id") int id);
     
     @Query(value = "SELECT checkin FROM usuReservas WHERE usuarios_id = :idusuario and reservas_idreserva = :idreserva", nativeQuery = true)
     Collection<usuReservas> darCheckIn(@Param("idusuario") int idusuario, @Param("idreserva") int idreserva);
