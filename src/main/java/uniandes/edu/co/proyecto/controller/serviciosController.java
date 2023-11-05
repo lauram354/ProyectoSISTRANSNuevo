@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 import uniandes.edu.co.proyecto.modelo.Servicios;
 import uniandes.edu.co.proyecto.repositorio.serviciosRepository;
 
@@ -57,5 +59,14 @@ public class serviciosController {
         serviciosRepository.eliminarServicio(id);
         return "redirect:/servicios";
     }
+
+    // RFC1 // 
+     @GetMapping("/servicios/recolectadoPorHabitacion")
+    public String dineroRecolectadoServiciosHabitacion(Model model) {
+        List<Object[]> dineroRecolectadoPorHabitacion = serviciosRepository.calcularDineroRecolectadoPorHabitacionEnUltimoAnio();
+        model.addAttribute("dineroRecolectadoPorHabitacion", dineroRecolectadoPorHabitacion);
+        return "recolectadoPorHabitacion";
     
+}
+
 }

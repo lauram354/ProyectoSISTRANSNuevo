@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -33,4 +34,11 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
     @Transactional
     @Query(value = "DELETE FROM servicios WHERE idservicio = :id", nativeQuery = true)
     void eliminarServicio(@Param("id") int id);
+
+    @Query(value = "SELECT h.id_habitacion, SUM(c.costoFinal) " +
+    "FROM habis h " +
+    "INNER JOIN consumos c ON h.id_habitacion = c.habis_id_habitacion " +
+    "WHERE c.fecha BETWEEN '01/01/2023' AND '31/12/2023' " +
+    "GROUP BY h.id_habitacion", nativeQuery = true)
+     List<Object[]> calcularDineroRecolectadoPorHabitacionEnUltimoAnio();
 } 
