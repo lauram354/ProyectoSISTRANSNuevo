@@ -50,4 +50,28 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
              "group by servicios.tipo_servicio " + 
              "ORDER BY COUNT(servicios.tipo_servicio) DESC", nativeQuery = true)
      List<Object[]> top20Servicios(String fechaInicial, String fechaFinal);
+
+     @Query(value = "SELECT * FROM servicios " +
+     "INNER JOIN reservaserv ON servicios.idservicio = reservaserv.servicios_idservicio " +
+     "INNER JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " +
+     "WHERE reservaserv.usuarios_id = :usuarioId " +
+     "AND consumos.fecha BETWEEN :fechaInicio AND :fechaFin " +
+     "AND servicios.tipo_servicio = :tipoServicio",
+     nativeQuery = true)
+     List<Servicios> obtenerServiciosPorCaracteristica(
+        @Param("usuarioId") Long usuarioId,
+        @Param("fechaInicio") String fechaInicio,
+        @Param("fechaFin") String fechaFin,
+        @Param("tipoServicio") String tipoServicio
+        );
+        
+        @Query(value = "SELECT servicios.tipo_servicio, COUNT(servicios.tipo_servicio)/52 AS SERVICIO_POR_SEMANA " +
+        "FROM reservaserv " +
+        "INNER JOIN servicios ON reservaserv.servicios_idservicio = servicios.idservicio " +
+        "GROUP BY servicios.tipo_servicio " +
+        "HAVING COUNT(servicios.tipo_servicio)/52 < 3", nativeQuery = true)
+        List<Object[]> encontrarServiciosConPocaDemanda();
+
+
+     
 } 

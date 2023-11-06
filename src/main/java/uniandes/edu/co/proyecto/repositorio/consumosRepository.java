@@ -44,4 +44,42 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
             "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " + 
             "WHERE USUARIOS.ID = :id AND CONSUMOS.FECHA between :fechaInicial and :fechaFinal", nativeQuery = true)
     List<Object[]>  darConsumosPorFechas(@Param("id") String id, @Param("fechaInicial") String fechaInicial, @Param("fechaFinal") String fechaFinal);
+
+    //RFC9
+    @Query(value = "SELECT USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, CONSUMOS.FECHA, SERVICIOS.SERVICIOS_TYPE " +
+    "FROM USUARIOS " +
+    "INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID " +
+    "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " +
+    "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "WHERE CONSUMOS.FECHA BETWEEN '01/01/2020' AND '31/12/2024' " +
+    "AND SERVICIOS.TIPO_SERVICIO = 'INTERNET' " +
+    "ORDER BY USUARIOS.ID",
+    nativeQuery = true)
+    List<Object[]> consultarConsumoInternet();
+    
+    @Query(value = "SELECT USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, SERVICIOS.SERVICIOS_TYPE, COUNT(SERVICIOS.SERVICIOS_TYPE) " +
+    "FROM USUARIOS " +
+    "INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID " +
+    "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " +
+    "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "WHERE CONSUMOS.FECHA BETWEEN '01/01/2020' AND '31/12/2024' " +
+    "AND SERVICIOS.TIPO_SERVICIO = 'INTERNET' " +
+    "GROUP BY USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, SERVICIOS.SERVICIOS_TYPE " +
+    "HAVING COUNT(SERVICIOS.SERVICIOS_TYPE) < 3",
+    nativeQuery = true)
+    List<Object[]> consultarConsumoInternetCount();
+
+    //RFC7
+
+    @Query(value = "SELECT usuarios.id, SUM(consumos.costofinal) as consumos " +
+    "FROM reservas " +
+    "INNER JOIN usureservas ON reservas.idreserva = usureservas.reservas_idreserva " +
+    "INNER JOIN usuarios ON usureservas.usuarios_id = usuarios.id " +
+    "FULL JOIN reservaserv ON usuarios.id = reservaserv.usuarios_id " +
+    "FULL JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " +
+    "WHERE (TO_CHAR(reservas.fecha_salida, 'IW') - TO_CHAR(reservas.fecha_entrada, 'IW') > 2) " +
+    "GROUP BY usuarios.id " +
+    "HAVING SUM(consumos.costofinal) > 15000000", nativeQuery = true)
+    List<Object[]> encontrarBuenosClientes();
+
 } 

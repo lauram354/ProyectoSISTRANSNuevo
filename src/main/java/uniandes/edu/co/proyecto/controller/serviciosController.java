@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -69,6 +70,34 @@ public class serviciosController {
     
     }
 
-    
+    @GetMapping("/servicios/top20Servicios")
+    public String mostrarTop20Servicios(Model model) {
+        List<Object[]> top20Servicios = serviciosRepository.top20Servicios("01/01/2020", "31/12/2023");
+        model.addAttribute("top20Servicios", top20Servicios);
+        return "top20Servicios"; 
+    }
+
+     @GetMapping("/servicios/servicioPorCaracteristica")
+    public String mostrarServiciosPorCaracteristica(
+        @RequestParam("usuarioId") Long usuarioId,
+        @RequestParam("fechaInicio") String fechaInicio,
+        @RequestParam("fechaFin") String fechaFin,
+        @RequestParam("tipoServicio") String tipoServicio,
+        Model model
+    ) {
+        List<Servicios> servicios = serviciosRepository.obtenerServiciosPorCaracteristica(
+            usuarioId, fechaInicio, fechaFin, tipoServicio);
+        
+        model.addAttribute("servicios", servicios);
+        return "servicioPorCaracteristica";
+    }
+
+    @GetMapping("/servicios/serviciosConPocaDemanda")
+    public String serviciosConPocaDemanda(Model model) {
+    List<Object[]> serviciosPocaDemanda = serviciosRepository.encontrarServiciosConPocaDemanda();
+    model.addAttribute("serviciosPocaDemanda", serviciosPocaDemanda);
+    return "serviciosConPocaDemanda";
+}
+
 
 }

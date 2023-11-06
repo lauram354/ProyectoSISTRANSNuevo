@@ -82,5 +82,6 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
              "ORDER BY  SUM(consumos.costofinal) DESC " + 
              "FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
     List<Object[]>  darFechaMayorConsumo();
+
     
 } 
