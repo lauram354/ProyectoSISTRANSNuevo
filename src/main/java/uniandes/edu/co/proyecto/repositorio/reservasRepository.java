@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -34,5 +35,12 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
     @Transactional
     @Query(value = "DELETE FROM reservas WHERE idreserva = :id", nativeQuery = true)
     void eliminarReserva(@Param("id") int id);
+    
+
+    @Query(value = "SELECT RESERVAS.HABIS_ID_HABITACION, COUNT(RESERVAS.HABIS_ID_HABITACION)*100/(SELECT COUNT(*) FROM RESERVAS) AS PorcentajeOcupacion " +
+            "FROM RESERVAS " +
+            "WHERE FECHA_ENTRADA between '01/01/2023' and '31/12/2023' " +
+            "GROUP BY HABIS_ID_HABITACION", nativeQuery = true)
+     List<Object[]> indiceOcupacionHabitaciones();
     
 } 

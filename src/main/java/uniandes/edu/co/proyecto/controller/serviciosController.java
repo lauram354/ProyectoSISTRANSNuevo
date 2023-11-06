@@ -67,6 +67,8 @@ public class serviciosController {
         model.addAttribute("dineroRecolectadoPorHabitacion", dineroRecolectadoPorHabitacion);
         return "recolectadoPorHabitacion";
     
-}
+    }
+
+    
 
 }

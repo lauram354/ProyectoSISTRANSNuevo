@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -41,4 +42,12 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
     "WHERE c.fecha BETWEEN '01/01/2023' AND '31/12/2023' " +
     "GROUP BY h.id_habitacion", nativeQuery = true)
      List<Object[]> calcularDineroRecolectadoPorHabitacionEnUltimoAnio();
+
+     @Query(value = "select servicios.tipo_servicio, count(servicios.tipo_servicio) AS Consumo " + 
+             "from Servicios inner join reservaserv on servicios.idservicio = reservaServ.Servicios_idServicio " + 
+             "inner join consumos on reservaserv.consumos_idconsumo = consumos.idconsumo " + 
+             "where consumos.fecha between :fechaInicial and :fechaFinal AND rownum < 21 " + 
+             "group by servicios.tipo_servicio " + 
+             "ORDER BY COUNT(servicios.tipo_servicio) DESC", nativeQuery = true)
+     List<Object[]> top20Servicios(String fechaInicial, String fechaFinal);
 } 
