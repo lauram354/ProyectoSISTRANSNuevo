@@ -92,4 +92,12 @@ public class serviciosController {
         return "servicioPorCaracteristica";
     }
 
+    @GetMapping("/servicios/serviciosConPocaDemanda")
+    public String serviciosConPocaDemanda(Model model) {
+    List<Object[]> serviciosPocaDemanda = serviciosRepository.encontrarServiciosConPocaDemanda();
+    model.addAttribute("serviciosPocaDemanda", serviciosPocaDemanda);
+    return "serviciosConPocaDemanda";
+}
+
+
 }
