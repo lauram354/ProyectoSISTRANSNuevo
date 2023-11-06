@@ -62,6 +62,25 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
      "AND servicios.tipo_servicio = :tipoServicio",
      nativeQuery = true)
      List<Object[]> obtenerServiciosPorCaracteristica(@Param("usuarioId") String usuarioId, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin, @Param("tipoServicio") String tipoServicio);
+
+     @Query(value = "SELECT * " +
+                     "FROM SERVICIOS INNER JOIN RESERVASERV ON SERVICIOS.IDSERVICIO = RESERVASERV.SERVICIOS_IDSERVICIO\r\n" + 
+                     "    INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO\r\n" + 
+                     "WHERE CONSUMOS.FECHA between :fechaInicio and :fechaFin", nativeQuery = true)
+     List<Object[]> obtenerServiciosPorFechas(@Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
+
+     @Query(value = "SELECT * " + 
+                     "FROM SERVICIOS INNER JOIN RESERVASERV ON SERVICIOS.IDSERVICIO = RESERVASERV.SERVICIOS_IDSERVICIO " + 
+                     "    INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " + 
+                     "WHERE RESERVASERV.USUARIOS_ID = :usuarioId", nativeQuery = true)
+     List<Object[]> obtenerServiciosPorUsuario(@Param("usuarioId") String usuarioId);
+
+     @Query(value = "SELECT * " + 
+                     "FROM SERVICIOS INNER JOIN RESERVASERV ON SERVICIOS.IDSERVICIO = RESERVASERV.SERVICIOS_IDSERVICIO " + 
+                     "    INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " + 
+                     "WHERE SERVICIOS.TIPO_SERVICIO = :tipoServicio",
+     nativeQuery = true)
+     List<Object[]> obtenerServiciosPorServicio(@Param("tipoServicio") String tipoServicio);
         
         @Query(value = "SELECT servicios.tipo_servicio, COUNT(servicios.tipo_servicio)/52 AS SERVICIO_POR_SEMANA " +
         "FROM reservaserv " +
@@ -76,8 +95,8 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
         "INNER JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " ,nativeQuery = true)
         List<Object[]> obtenerServiciosConsumo();
         
-        
 
+        
 
      
 } 
