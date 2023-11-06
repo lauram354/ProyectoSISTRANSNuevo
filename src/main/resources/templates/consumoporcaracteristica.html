@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicio no consumidos por características</title>
+    <title>Servicios consumidos  por características</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script th:src="@{/css/jquery.min.js}"></script>
     <script th:src="@{/css/bootstrap.min.js}"></script>
 </head>
 <body>
     <div class="container-fluid text-center">
-        <h1>Servicio no consumidos por características</h1>
+        <h1>Servicios consumidos por características</h1>
 
         <div class="container w-25">
             <div class="card border border-2 mx-auto">
@@ -24,7 +24,7 @@
                 </h5>
 
                 <div id="busqueda" class="collapse">
-                    <form th:action="@{noconsumoporcaracteristica}" method="get">
+                    <form th:action="@{consumoporcaracteristica}" method="get">
                         <label class="col-form-label">Orden:</label>
                         <select class="form-control" id="orden" name="orden">
                             <option value="Usuario"> Usuario</option>
@@ -75,7 +75,7 @@
                 </tr>
             </thead>
 
-            <th:block th:each="serv: ${noconsumoporcaracteristica}">
+            <th:block th:each="serv: ${consumoporcaracteristica}">
                 <tr>
                     <td th:text="${serv[0]}"></td>
                     <td th:text="${serv[1]}"></td>

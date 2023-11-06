@@ -75,6 +75,28 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     nativeQuery = true)
     List<Object[]> consultarConsumoInternetCount();
 
+    @Query(value = "SELECT USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, CONSUMOS.FECHA, SERVICIOS.SERVICIOS_TYPE " +
+    "FROM USUARIOS " +
+    "INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID " +
+    "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " +
+    "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "WHERE CONSUMOS.FECHA BETWEEN :fechainicio AND :fechafin " +
+    "AND SERVICIOS.TIPO_SERVICIO = :tipo " +
+    "ORDER BY USUARIOS.ID",
+    nativeQuery = true)
+    List<Object[]> consultarConsumoCaracteristica(@Param("fechainicio") String fechainicio, @Param("fechafin") String fechafin, @Param("tipo") String tiposervicio);
+    
+    @Query(value = "SELECT USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, SERVICIOS.SERVICIOS_TYPE, COUNT(SERVICIOS.SERVICIOS_TYPE) " +
+    "FROM USUARIOS " +
+    "INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID " +
+    "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " +
+    "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "WHERE CONSUMOS.FECHA BETWEEN :fechainicio AND :fechafin " +
+    "AND SERVICIOS.TIPO_SERVICIO = :tipo " +
+    "GROUP BY USUARIOS.ID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, SERVICIOS.SERVICIOS_TYPE" ,
+    nativeQuery = true)
+    List<Object[]> consultarConsumoCaracteristicaCount(@Param("fechainicio") String fechainicio, @Param("fechafin") String fechafin, @Param("tipo") String tiposervicio);
+
     //RFC7
 
     @Query(value = "SELECT usuarios.id, SUM(consumos.costofinal) as consumos " +
@@ -96,7 +118,7 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
         + "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO "
         + "WHERE CONSUMOS.FECHA BETWEEN :fechaInicio AND :fechaFin AND SERVICIOS.TIPO_SERVICIO != :tiposervicio "
         + "ORDER BY USUARIOS.ID", nativeQuery = true)
-        List<Object[]> darConsumos(@Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin, @Param("tipo") String tiposervicio);
+        List<Object[]> darConsumos(@Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin, @Param("tiposervicio") String tiposervicio);
 
         // Consulta SQL 2: Obtener la cantidad de consumos agrupados por usuarios y tipo de servicio
         @Query(value = "SELECT USUARIOS.ID, USUARIOS.TIPOID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, SERVICIOS.SERVICIOS_TYPE, COUNT(SERVICIOS.SERVICIOS_TYPE) "

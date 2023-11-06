@@ -203,4 +203,60 @@ public class consumosController {
         }
         return "noconsumoporcaracteristica";
     }
+
+    @GetMapping("/consumos/consumoporcaracteristica")
+    public String mostrarConsumoCaracteristicaRFC9(
+        String fechainicio,
+        String fechafin,
+        String tiposervicio,
+        String orden,
+        Model model) 
+    {
+        SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat nuevo = new SimpleDateFormat("dd/MM/yyyy");
+
+        if ((fechainicio ==null || fechainicio.equals(""))  || (fechafin ==null || fechafin.equals("")) || (tiposervicio ==null || tiposervicio.equals("")) ){
+            model.addAttribute("consumoporcaracteristica", consumoRepository.darConsumosDefault());
+        }
+        else if ((orden.equals("Usuario"))){
+            String fechaFormateadaI = fechainicio.replace('-', '/').strip();
+            String fechaFormateadaF = fechafin.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechainicio);
+                fechaFormateadaI = nuevo.format(fechaDateI);
+
+                Date fechaDateF = original.parse(fechafin);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+                System.out.println(fechaFormateadaI);
+                System.out.println(fechaFormateadaF);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            
+            List<Object[]> consumo= consumoRepository.consultarConsumoCaracteristica(fechaFormateadaI, fechaFormateadaF, tiposervicio); 
+            model.addAttribute("consumoporcaracteristica", consumo);
+        
+        } else{
+            String fechaFormateadaI = fechainicio.replace('-', '/').strip();
+            String fechaFormateadaF = fechafin.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechainicio);
+                fechaFormateadaI = nuevo.format(fechaDateI);
+
+                Date fechaDateF = original.parse(fechafin);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+                System.out.println(fechaFormateadaI);
+                System.out.println(fechaFormateadaF);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            
+            List<Object[]> consumo= consumoRepository.consultarConsumoCaracteristicaCount(fechaFormateadaI, fechaFormateadaF, tiposervicio); 
+            model.addAttribute("consumoporcaracteristica", consumo);
+        }
+        return "consumoporcaracteristica";
+    }
+
 }
