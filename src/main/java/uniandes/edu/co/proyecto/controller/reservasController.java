@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Reservas;
 import uniandes.edu.co.proyecto.repositorio.reservasRepository;
+import uniandes.edu.co.proyecto.repositorio.reservasRepository.RespuestaFechasMasOcupadas;
 
 @Controller
 public class reservasController {
@@ -67,6 +69,14 @@ public class reservasController {
         List<Object[]> indiceOcupacionHabitaciones = reservaRepository.indiceOcupacionHabitaciones();
         model.addAttribute("indiceOcupacionHabitaciones", indiceOcupacionHabitaciones);
         return "indiceocupacion";
-    
+    }
+
+    //RFC6//
+    @GetMapping("/reservas/operacionhotel")
+    public String darFechaMayorOcupacion(Model model) {
+        List<Object[]>  informacion = reservaRepository.darFechaMayorOcupacion();
+        model.addAttribute("fechasMayorOcupacion", informacion);
+        //model.addAttribute("habitacionesOcupadas", informacion.iterator().next().getHABITACIONES_OCUPADAS());
+        return "operacionhotel";
     }
 }
