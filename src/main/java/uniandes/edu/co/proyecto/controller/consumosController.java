@@ -116,6 +116,7 @@ public class consumosController {
         return "buenosClientes";
     }
 
+    /*
         @GetMapping("/consumos/usuarios")
     public String Usuarios(Model model) {
         // Consulta SQL 1: Obtener los consumos en el rango de fechas especificado sin PISCINA
@@ -128,7 +129,7 @@ public class consumosController {
 
         return "consumos";
     }
-
+    */
     @GetMapping("/consumos/consulta")
     public String mostrarFormularioConsulta(Model model) {
         model.addAttribute("consulta", new consultaForm());
@@ -146,5 +147,60 @@ public class consumosController {
         model.addAttribute("consumosPersonalizados", consumosPersonalizados);
 
         return "consumos_personalizados";
+    }
+
+    @GetMapping("/consumos/noconsumoporcaracteristica")
+    public String mostrarConsumoCaracteristica(
+        String fechainicio,
+        String fechafin,
+        String tiposervicio,
+        String orden,
+        Model model) 
+    {
+        SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat nuevo = new SimpleDateFormat("dd/MM/yyyy");
+
+        if ((fechainicio ==null || fechainicio.equals(""))  || (fechafin ==null || fechafin.equals("")) || (tiposervicio ==null || tiposervicio.equals("")) ){
+            model.addAttribute("noconsumoporcaracteristica", consumoRepository.darConsumosDefault());
+        }
+        else if ((orden.equals("Usuario"))){
+            String fechaFormateadaI = fechainicio.replace('-', '/').strip();
+            String fechaFormateadaF = fechafin.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechainicio);
+                fechaFormateadaI = nuevo.format(fechaDateI);
+
+                Date fechaDateF = original.parse(fechafin);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+                System.out.println(fechaFormateadaI);
+                System.out.println(fechaFormateadaF);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            
+            List<Object[]> noconsumo= consumoRepository.darConsumos(fechaFormateadaI, fechaFormateadaF, tiposervicio); 
+            model.addAttribute("noconsumoporcaracteristica", noconsumo);
+        
+        } else{
+            String fechaFormateadaI = fechainicio.replace('-', '/').strip();
+            String fechaFormateadaF = fechafin.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechainicio);
+                fechaFormateadaI = nuevo.format(fechaDateI);
+
+                Date fechaDateF = original.parse(fechafin);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+                System.out.println(fechaFormateadaI);
+                System.out.println(fechaFormateadaF);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            
+            List<Object[]> noconsumo= consumoRepository.darConsumosCount(fechaFormateadaI, fechaFormateadaF, tiposervicio); 
+            model.addAttribute("noconsumoporcaracteristica", noconsumo);
+        }
+        return "noconsumoporcaracteristica";
     }
 }
