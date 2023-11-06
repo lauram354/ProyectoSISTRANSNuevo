@@ -50,4 +50,6 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
              "group by servicios.tipo_servicio " + 
              "ORDER BY COUNT(servicios.tipo_servicio) DESC", nativeQuery = true)
      List<Object[]> top20Servicios(String fechaInicial, String fechaFinal);
+
+     
 } 

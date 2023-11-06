@@ -69,6 +69,11 @@ public class serviciosController {
     
     }
 
-    
+    @GetMapping("/servicios/top20Servicios")
+    public String mostrarTop20Servicios(Model model) {
+        List<Object[]> top20Servicios = serviciosRepository.top20Servicios("01/01/2020", "31/12/2023");
+        model.addAttribute("top20Servicios", top20Servicios);
+        return "top20Servicios"; 
+    }
 
 }
