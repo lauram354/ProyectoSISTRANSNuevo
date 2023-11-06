@@ -95,6 +95,64 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
         "INNER JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " ,nativeQuery = true)
         List<Object[]> obtenerServiciosConsumo();
         
+        //RFC11
+            // Mejor servicio por semana
+    @Query(value = "SELECT numero_semana, cantidad_consumos, TIPO_SERVICIO, GASTO " +
+    "FROM (SELECT " +
+    "        TO_CHAR(CONSUMOS.FECHA, 'IW') AS numero_semana, " +
+    "        COUNT(CONSUMOS.IDCONSUMO) AS cantidad_consumos,  " +
+    "        SERVICIOS.TIPO_SERVICIO, " +
+    "        SUM(CONSUMOS.COSTOFINAL) AS GASTO, " +
+    "        ROW_NUMBER() OVER (PARTITION BY TO_CHAR(CONSUMOS.FECHA, 'IW') ORDER BY COUNT(CONSUMOS.IDCONSUMO) DESC) AS ranking " +
+    "    FROM SERVICIOS  " +
+    "        INNER JOIN RESERVASERV ON SERVICIOS.IDSERVICIO =  RESERVASERV.SERVICIOS_IDSERVICIO " +
+    "        INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "    WHERE CONSUMOS.FECHA BETWEEN TO_DATE('01/01/2020', 'DD/MM/YYYY') AND TO_DATE('31/12/2024', 'DD/MM/YYYY') " +
+    "    GROUP BY TO_CHAR(CONSUMOS.FECHA, 'IW'), SERVICIOS.TIPO_SERVICIO) " +
+    "WHERE ranking = 1", nativeQuery = true)
+List<Object[]> encontrarMejorServicioPorSemana();
+
+// Peor servicio por semana
+@Query(value = "SELECT numero_semana, cantidad_consumos, TIPO_SERVICIO, GASTO " +
+    "FROM (SELECT " +
+    "        TO_CHAR(CONSUMOS.FECHA, 'IW') AS numero_semana, " +
+    "        COUNT(CONSUMOS.IDCONSUMO) AS cantidad_consumos,  " +
+    "        SERVICIOS.TIPO_SERVICIO, " +
+    "        SUM(CONSUMOS.COSTOFINAL) AS GASTO, " +
+    "        ROW_NUMBER() OVER (PARTITION BY TO_CHAR(CONSUMOS.FECHA, 'IW') ORDER BY COUNT(CONSUMOS.IDCONSUMO) ASC) AS ranking " +
+    "    FROM SERVICIOS  " +
+    "        INNER JOIN RESERVASERV ON SERVICIOS.IDSERVICIO =  RESERVASERV.SERVICIOS_IDSERVICIO " +
+    "        INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO " +
+    "    WHERE CONSUMOS.FECHA BETWEEN TO_DATE('01/01/2020', 'DD/MM/YYYY') AND TO_DATE('31/12/2024', 'DD/MM/YYYY') " +
+    "    GROUP BY TO_CHAR(CONSUMOS.FECHA, 'IW'), SERVICIOS.TIPO_SERVICIO) " +
+    "WHERE ranking = 1", nativeQuery = true)
+List<Object[]> encontrarPeorServicioPorSemana();
+
+// Habitación menos solicitada
+@Query(value = "SELECT numero_semana, cantidad_reservas, Habis_id_habitacion " +
+    "FROM (SELECT " +
+    "        TO_CHAR(reservas.fecha_entrada, 'IW') AS numero_semana, " +
+    "        COUNT(reservas.idreserva) AS cantidad_reservas,  " +
+    "        Habis_id_habitacion, " +
+    "        ROW_NUMBER() OVER (PARTITION BY TO_CHAR(reservas.fecha_entrada, 'IW') ORDER BY COUNT(reservas.idreserva) ASC) AS ranking " +
+    "    FROM reservas  " +
+    "    WHERE reservas.fecha_entrada BETWEEN TO_DATE('01/01/2020', 'DD/MM/YYYY') AND TO_DATE('31/12/2024', 'DD/MM/YYYY') " +
+    "    GROUP BY TO_CHAR(reservas.fecha_entrada, 'IW'), Habis_id_habitacion) " +
+    "WHERE ranking = 1", nativeQuery = true)
+    List<Object[]> encontrarHabitacionMenosSolicitada();
+
+// Habitación más solicitada
+@Query(value = "SELECT numero_semana, cantidad_reservas, Habis_id_habitacion " +
+    "FROM (SELECT " +
+    "        TO_CHAR(reservas.fecha_entrada, 'IW') AS numero_semana, " +
+    "        COUNT(reservas.idreserva) AS cantidad_reservas,  " +
+    "        Habis_id_habitacion, " +
+    "        ROW_NUMBER() OVER (PARTITION BY TO_CHAR(reservas.fecha_entrada, 'IW') ORDER BY COUNT(reservas.idreserva) DESC) AS ranking " +
+    "    FROM reservas  " +
+    "    WHERE reservas.fecha_entrada BETWEEN TO_DATE('01/01/2020', 'DD/MM/YYYY') AND TO_DATE('31/12/2024', 'DD/MM/YYYY') " +
+    "    GROUP BY TO_CHAR(reservas.fecha_entrada, 'IW'), Habis_id_habitacion) " +
+    "WHERE ranking = 1", nativeQuery = true)
+    List<Object[]> encontrarHabitacionMasSolicitada();
 
         
 

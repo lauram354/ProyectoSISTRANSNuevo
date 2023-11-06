@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Peor Servicio por Semana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Peor Servicio por Semana</h1>
+    
+    <table>
+        <tr>
+            <th>Semana</th>
+            <th>Cantidad de Consumos</th>
+            <th>Tipo de Servicio</th>
+            <th>Total Gastado</th>
+        </tr>
+        <th:block th:each="servicio : ${peorServicioPorSemana}">
+            <tr>
+                <td th:text="${servicio[0]}"></td>
+                <td th:text="${servicio[1]}"></td>
+                <td th:text="${servicio[2]}"></td>
+                <td th:text="${servicio[3]}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>
+

@@ -123,6 +123,29 @@ public class serviciosController {
     model.addAttribute("serviciosPocaDemanda", serviciosPocaDemanda);
     return "serviciosConPocaDemanda";
 }
+   @GetMapping("/servicios/mejorServicioPorSemana")
+public String mejorServicioPorSemana(Model model) {
+    model.addAttribute("mejorServicioPorSemana", serviciosRepository.encontrarMejorServicioPorSemana());
+    return "mejorServicioPorSemana";
+}
+
+   @GetMapping("/servicios/peorServicioPorSemana")
+public String peorServicioPorSemana(Model model) {
+    model.addAttribute("peorServicioPorSemana", serviciosRepository.encontrarPeorServicioPorSemana());
+    return "peorServicioPorSemana";
+}
+
+@GetMapping("/servicios/habitacionMenosSolicitada")
+public String habitacionMenosSolicitada(Model model) {
+    model.addAttribute("habitacionMenosSolicitada", serviciosRepository.encontrarHabitacionMenosSolicitada());
+    return "habitacionMenosSolicitada";
+}
+
+@GetMapping("/servicios/habitacionMasSolicitada")
+public String habitacionMasSolicitada(Model model) {
+    model.addAttribute("habitacionMasSolicitada", serviciosRepository.encontrarHabitacionMasSolicitada());
+    return "habitacionMasSolicitada";
+}
 
 
 }

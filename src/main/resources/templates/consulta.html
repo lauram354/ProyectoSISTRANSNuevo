@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Consumos</title>
+</head>
+<body>
+    <h1>Consulta de Consumos</h1>
+
+    <form action="/realizarConsulta" method="post">
+        <label for="fechaInicio">Fecha de inicio:</label>
+        <input type="text" id="fechaInicio" name="fechaInicio"><br>
+
+        <label for="fechaFin">Fecha de fin:</label>
+        <input type="text" id="fechaFin" name="fechaFin"><br>
+
+        <label for="tipoServicio">Tipo de Servicio:</label>
+        <input type="text" id="tipoServicio" name="tipoServicio"><br>
+
+        <input type="submit" value="Realizar Consulta">
+    </form>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Evitar que el formulario se envíe
+            const fechaInicio = document.getElementById('fechaInicio').value;
+            const fechaFin = document.getElementById('fechaFin').value;
+            const tipoServicio = document.getElementById('tipoServicio').value;
+            // Construir la URL de redireccionamiento
+            const redirectUrl = '/consumos/consultar?fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&tipoServicio=' + tipoServicio;
+            window.location.href = redirectUrl;
+        });
+    </script>
+</body>
+</html>
+

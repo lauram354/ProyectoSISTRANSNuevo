@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados de la Consulta</title>
+</head>
+<body>
+    <h1>Resultados de la Consulta</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha</th>
+            <th>Tipo de Servicio</th>
+        </tr>
+        <th:block th:each="consumo : ${consumos}">
+            <tr>
+                <td th:text="${consumo[0]}"></td>
+                <td th:text="${consumo[1]}"></td>
+                <td th:text="${consumo[2]}"></td>
+                <td th:text="${consumo[3]}"></td>
+                <td th:text="${consumo[4]}"></td>
+            </tr>
+        </th:block>
+    </table>
+    
+    <a href="/consulta">Volver al formulario de consulta</a>
+</body>
+</html>

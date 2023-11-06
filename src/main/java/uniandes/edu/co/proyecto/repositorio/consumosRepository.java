@@ -88,4 +88,23 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     "HAVING SUM(consumos.costofinal) > 15000000", nativeQuery = true)
     List<Object[]> encontrarBuenosClientes();
 
+    //RFC10
+        // Consulta SQL 1: Obtener los consumos en el rango de fechas especificado sin PISCINA
+        @Query(value = "SELECT USUARIOS.ID, USUARIOS.TIPOID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, CONSUMOS.FECHA, SERVICIOS.SERVICIOS_TYPE "
+        + "FROM USUARIOS INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID "
+        + "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO "
+        + "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO "
+        + "WHERE CONSUMOS.FECHA BETWEEN :fechaInicio AND :fechaFin AND SERVICIOS.TIPO_SERVICIO != 'PISCINA' "
+        + "ORDER BY USUARIOS.ID", nativeQuery = true)
+        List<Object[]> darConsumos(@Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
+
+        // Consulta SQL 2: Obtener la cantidad de consumos agrupados por usuarios y tipo de servicio
+        @Query(value = "SELECT USUARIOS.ID, USUARIOS.TIPOID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, SERVICIOS.SERVICIOS_TYPE, COUNT(SERVICIOS.SERVICIOS_TYPE) "
+        + "FROM USUARIOS INNER JOIN RESERVASERV ON RESERVASERV.USUARIOS_ID = USUARIOS.ID "
+        + "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO "
+        + "INNER JOIN CONSUMOS ON RESERVASERV.CONSUMOS_IDCONSUMO = CONSUMOS.IDCONSUMO "
+        + "WHERE CONSUMOS.FECHA BETWEEN :fechaInicio AND :fechaFin AND SERVICIOS.TIPO_SERVICIO != 'PISCINA' "
+        + "GROUP BY USUARIOS.ID, USUARIOS.TIPOID, USUARIOS.NOMBRE, USUARIOS.EMAIL, USUARIOS.LOGIN, SERVICIOS.SERVICIOS_TYPE", nativeQuery = true)
+        List<Object[]> darConsumosCount(@Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
+
 } 

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import uniandes.edu.co.proyecto.modelo.consultaForm;
 
 import uniandes.edu.co.proyecto.modelo.Consumos;
 import uniandes.edu.co.proyecto.modelo.Usuarios;
@@ -112,5 +114,37 @@ public class consumosController {
         model.addAttribute("buenosClientes", consumoRepository.encontrarBuenosClientes());
         
         return "buenosClientes";
+    }
+
+        @GetMapping("/consumos/usuarios")
+    public String Usuarios(Model model) {
+        // Consulta SQL 1: Obtener los consumos en el rango de fechas especificado sin PISCINA
+        List<Object[]> consumos = consumoRepository.darConsumos(null, null);
+        model.addAttribute("consumos", consumos);
+
+        // Consulta SQL 2: Obtener la cantidad de consumos agrupados por usuarios y tipo de servicio
+        List<Object[]> consumoCount = consumoRepository.darConsumosCount(null, null);
+        model.addAttribute("consumoCount", consumoCount);
+
+        return "consumos";
+    }
+
+    @GetMapping("/consumos/consulta")
+    public String mostrarFormularioConsulta(Model model) {
+        model.addAttribute("consulta", new consultaForm());
+        return "consulta";
+    }
+
+    @RequestMapping(value = "/consumos/consultar", method = RequestMethod.POST)
+    public String consultarConsumo(@ModelAttribute consultaForm consultaForm, Model model) {
+        String fechaInicio = consultaForm.getFechaInicio();
+        String fechaFin = consultaForm.getFechaFin();
+        String tipoServicio = consultaForm.getTipoServicio();
+
+
+        List<Object[]> consumosPersonalizados = consumoRepository.darConsumosPorFechas(fechaInicio, fechaFin, tipoServicio);
+        model.addAttribute("consumosPersonalizados", consumosPersonalizados);
+
+        return "consumos_personalizados";
     }
 }
