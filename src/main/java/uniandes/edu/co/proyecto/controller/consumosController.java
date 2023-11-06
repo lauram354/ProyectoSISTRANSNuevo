@@ -64,13 +64,13 @@ public class consumosController {
     }
     
     // RFC5 // 
-     @GetMapping("/consumos/consumoporfechas"){
+     @GetMapping("/consumos/consumoporfechas")
     public String consumoPorFechas(Model model, String id, String fechaInicial, String fechaFinal) {
         List<Object[]> consumoPorFechas = consumoRepository.darConsumosPorFechas(id, fechaInicial, fechaFinal);
         model.addAttribute("consumoporfechas", consumoPorFechas);
         return "consumoporfechas";
     }
-    
+
     @GetMapping("/consumos/internet")
     public String consultarConsumoInternet(Model model) {
         // Realiza la primera consulta SQL
