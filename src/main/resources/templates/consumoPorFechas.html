@@ -1,60 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Buscar Consumos de un Usuarios por Fechas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumos en un rango de fechas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
 </head>
 <body>
     <div class="container-fluid text-center">
-        <h1>Búsqueda por usuario y fechas</h1>
-        <form action="@{consumoporfechas}" method="get">
-            <label class="col-form-label">Usuario:</label>
-            <input class="form-control" type="text" id="id" name="id" />
-        
-            <br><br>
-        
-            <label class="col-form-label">Fecha de inicio:</label>
-            <input class="form-control" type="date" id="fechaInicial" name="fechaInicial" />
+        <h1>Consumos en un rango de fechas</h1>
 
-            <br><br>
+        <div class="container w-25">
+            <div class="card border border-2 mx-auto">
 
-            <label class="col-form-label">Fecha de fin:</label>
-            <input class="form-control" type="date" id="fechaFinal" name="fechaFinal" />
-        
-            <br><br>
-            <div>
-            <button type="submit" class="btn btn-secondary"> Buscar consumos por usuario y fechas </button>
+                <h5 class="card-header" role='button' id="headingOne">
+                    <a href="#" class="collapsed d-block" data-toggle="collapse" data-target="#busqueda">
+
+                        Búsqueda por fechas
+                    </a>
+
+                </h5>
+
+                <div id="busqueda" class="collapse">
+                    <form th:action="@{consumoporfechas}" method="get">
+                        <label class="col-form-label">Usuario:</label>
+                        <input class="form-control" type="text" id="id" name="id" />
+
+                        <label class="col-form-label">Fecha Inicio:</label>
+                        <input class="form-control" type="date" id="fechaInicial" name="fechaInicial" />
+                        
+                        <label class="col-form-label">Fecha Final:</label>
+                        <input class="form-control" type="date" id="fechaFinal" name="fechaFinal" />
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-secondary">Buscar por fechas</button>
+                        </div>
+
+                        <br />
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
+        <br />
 
-    </div>
-</br>
-    <div class="container-fluid text-center">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Usuario </th>
-                    <th>Nombre</th>
-                    <th>Reserva</th>
-                    <th>Servicio</th>
-                    <th>Costo</th>
-                    <th>Fecha</th>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>ID RESERVA</th>
+                    <th>SERVICIO</th>
+                    <th>COSTO</th>
+                    <th>FECHA</th>
                 </tr>
             </thead>
-            <tr th:each="dato : ${consumoporfechas}">
-                <td th:text="${dato[0]}"></td> <!-- Nombre de la habitación -->
-                <td th:text="${dato[1]}"></td> <!-- Indice de ocupación -->
-                <td th:text="${dato[2]}"></td> <!-- Indice de ocupación -->
-                <td th:text="${dato[3]}"></td> <!-- Indice de ocupación -->
-                <td th:text="${dato[4]}"></td> <!-- Indice de ocupación -->
-                <td th:text="${dato[5]}"></td> <!-- Indice de ocupación -->
-            </tr>
+
+            <th:block th:each="cons: ${consumoporfechas}">
+                <tr>
+                    <td th:text="${cons[0]}"></td>
+                    <td th:text="${cons[1]}"></td>
+                    <td th:text="${cons[2]}"></td>
+                    <td th:text="${cons[3]}"></td>
+                    <td th:text="${cons[4]}"></td>
+                    <td th:text="${cons[5]}"></td>
+                    
+                </tr>
+            </th:block>
         </table>
-        <a th:href="@{/}" class="btn btn-primary">Volver Atrás</a>
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
+</html>
+
 </html>

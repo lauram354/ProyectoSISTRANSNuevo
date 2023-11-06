@@ -1,5 +1,8 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +69,28 @@ public class consumosController {
     // RFC5 // 
      @GetMapping("/consumos/consumoporfechas")
     public String consumoPorFechas(Model model, String id, String fechaInicial, String fechaFinal) {
-        List<Object[]> consumoPorFechas = consumoRepository.darConsumosPorFechas(id, fechaInicial, fechaFinal);
-        model.addAttribute("consumoporfechas", consumoPorFechas);
+        SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat nuevo = new SimpleDateFormat("dd/MM/yyyy");
+
+        if ((id == null || id.equals("")) || (fechaInicial ==null || fechaInicial.equals(""))  || (fechaFinal ==null || fechaFinal.equals("")) ){
+            model.addAttribute("consumoporfechas", consumoRepository.darConsumosReq5());
+        }else{
+            String fechaFormateadaI = fechaInicial.replace('-', '/').strip();
+            String fechaFormateadaF = fechaFinal.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechaInicial);
+                fechaFormateadaI = nuevo.format(fechaDateI);
+
+                Date fechaDateF = original.parse(fechaFinal);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            List<Object[]> consumoPorFechas = consumoRepository.darConsumosPorFechas(id, fechaFormateadaI, fechaFormateadaF);
+            model.addAttribute("consumoporfechas", consumoPorFechas);
+        }
         return "consumoporfechas";
     }
 

@@ -41,6 +41,12 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     @Query(value= "SELECT USUARIOS.ID, USUARIOS.NOMBRE, RESERVASERV.IDRESERVA, SERVICIOS.SERVICIOS_TYPE, CONSUMOS.COSTOFINAL, CONSUMOS.FECHA " + 
             "FROM USUARIOS INNER JOIN RESERVASERV ON reservaserv.usuarios_id = usuarios.id " + 
             "INNER JOIN CONSUMOS ON reservaserv.consumos_idconsumo = consumos.idconsumo " + 
+            "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " , nativeQuery = true)
+    List<Object[]>  darConsumosReq5();
+
+    @Query(value= "SELECT USUARIOS.ID, USUARIOS.NOMBRE, RESERVASERV.IDRESERVA, SERVICIOS.SERVICIOS_TYPE, CONSUMOS.COSTOFINAL, CONSUMOS.FECHA " + 
+            "FROM USUARIOS INNER JOIN RESERVASERV ON reservaserv.usuarios_id = usuarios.id " + 
+            "INNER JOIN CONSUMOS ON reservaserv.consumos_idconsumo = consumos.idconsumo " + 
             "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " + 
             "WHERE USUARIOS.ID = :id AND CONSUMOS.FECHA between :fechaInicial and :fechaFinal", nativeQuery = true)
     List<Object[]>  darConsumosPorFechas(@Param("id") String id, @Param("fechaInicial") String fechaInicial, @Param("fechaFinal") String fechaFinal);
