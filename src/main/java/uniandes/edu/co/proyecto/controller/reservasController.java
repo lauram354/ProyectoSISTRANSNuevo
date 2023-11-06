@@ -66,7 +66,7 @@ public class reservasController {
     public String indiceOcupacionHabitaciones(Model model) {
         List<Object[]> indiceOcupacionHabitaciones = reservaRepository.indiceOcupacionHabitaciones();
         model.addAttribute("indiceOcupacionHabitaciones", indiceOcupacionHabitaciones);
-        return "redirect:/reservas";
+        return "indiceocupacion";
     
     }
 }
