@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -35,4 +36,12 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     @Transactional
     @Query(value = "DELETE FROM consumos WHERE idconsumo = :id", nativeQuery = true)
     void eliminarConsumo(@Param("id") int id);
+
+    //RFC5
+    @Query(value= "SELECT USUARIOS.ID, USUARIOS.NOMBRE, RESERVASERV.IDRESERVA, SERVICIOS.SERVICIOS_TYPE, CONSUMOS.COSTOFINAL, CONSUMOS.FECHA " + 
+            "FROM USUARIOS INNER JOIN RESERVASERV ON reservaserv.usuarios_id = usuarios.id " + 
+            "INNER JOIN CONSUMOS ON reservaserv.consumos_idconsumo = consumos.idconsumo " + 
+            "INNER JOIN SERVICIOS ON RESERVASERV.SERVICIOS_IDSERVICIO = SERVICIOS.IDSERVICIO " + 
+            "WHERE USUARIOS.ID = :id AND CONSUMOS.FECHA between :fechaInicial and :fechaFinal", nativeQuery = true)
+    List<Object[]>  darFechaMayorOcupacion(@Param("id") int id, @Param("fechaInicial") Date fechaInicial, @Param("fechaFinal") Date fechaFinal);
 } 

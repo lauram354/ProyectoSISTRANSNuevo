@@ -72,5 +72,25 @@ public class hotelController {
     public String showAdminPage() {
         return "ADMIN";
     }
+
+    @GetMapping("/CLIENTE")
+    public String showClientePage() {
+        return "CLIENTE";
+    }
+
+    @GetMapping("/RECEPCIONISTA")
+    public String showRecepPage() {
+        return "RECEPCIONISTA";
+    }
+
+    @GetMapping("/GERENTE")
+    public String showGerentePage() {
+        return "GERENTE";
+    }
+
+    @GetMapping("/EMPLEADO")
+    public String showEmplaedoPage() {
+        return "EMPLEADO";
+    }
     
 }
