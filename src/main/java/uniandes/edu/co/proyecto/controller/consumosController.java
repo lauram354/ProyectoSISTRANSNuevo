@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Consumos;
+import uniandes.edu.co.proyecto.modelo.Usuarios;
 import uniandes.edu.co.proyecto.repositorio.consumosRepository;
 
 @Controller
@@ -58,4 +61,11 @@ public class consumosController {
         return "redirect:/consumos";
     }
     
+    // RFC5 // 
+     @GetMapping("/consumos/consumoporfechas")
+    public String consumoPorFechas(Model model, String id, String fechaInicial, String fechaFinal) {
+        List<Object[]> consumoPorFechas = consumoRepository.darConsumosPorFechas(id, fechaInicial, fechaFinal);
+        model.addAttribute("consumoporfechas", consumoPorFechas);
+        return "consumoporfechas";
+    }
 }
