@@ -88,16 +88,30 @@ public class serviciosController {
         String tiposervicio,
         Model model) 
     {
-        
+        SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat nuevo = new SimpleDateFormat("dd/MM/yyyy");
+
         if ((usuarioid == null || usuarioid.equals("")) || (fechainicio ==null || fechainicio.equals(""))  || (fechafin ==null || fechafin.equals("")) || (tiposervicio ==null || tiposervicio.equals("")) ){
             model.addAttribute("servicioPorCaracteristica", serviciosRepository.obtenerServiciosConsumo());
         }
         else{
-            fechainicio = fechainicio.replace('-', '/').strip();
-            fechafin = fechafin.replace('-', '/').strip();
+            String fechaFormateadaI = fechainicio.replace('-', '/').strip();
+            String fechaFormateadaF = fechafin.replace('-', '/').strip();
+            try {
+                Date fechaDateI = original.parse(fechainicio);
+                fechaFormateadaI = nuevo.format(fechaDateI);
 
-        List<Servicios> servicioPorCaracteristica = serviciosRepository.obtenerServiciosPorCaracteristica(usuarioid, fechainicio, fechafin, tiposervicio); 
-        model.addAttribute("servicioPorCaracteristica", servicioPorCaracteristica);
+                Date fechaDateF = original.parse(fechafin);
+                fechaFormateadaF = nuevo.format(fechaDateF);
+
+                System.out.println(fechaFormateadaI);
+                System.out.println(fechaFormateadaF);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            
+            List<Object[]> servicioPorCaracteristica = serviciosRepository.obtenerServiciosPorCaracteristica(usuarioid, fechaFormateadaI, fechaFormateadaF, tiposervicio); 
+            model.addAttribute("servicioPorCaracteristica", servicioPorCaracteristica);
         
         }
         return "servicioPorCaracteristica";

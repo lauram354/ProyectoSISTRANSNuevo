@@ -61,12 +61,7 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
      "AND consumos.fecha BETWEEN :fechaInicio AND :fechaFin " +
      "AND servicios.tipo_servicio = :tipoServicio",
      nativeQuery = true)
-     List<Servicios> obtenerServiciosPorCaracteristica(
-        @Param("usuarioId") String usuarioId,
-        @Param("fechaInicio") String fechaInicio,
-        @Param("fechaFin") String fechaFin,
-        @Param("tipoServicio") String tipoServicio
-        );
+     List<Object[]> obtenerServiciosPorCaracteristica(@Param("usuarioId") String usuarioId, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin, @Param("tipoServicio") String tipoServicio);
         
         @Query(value = "SELECT servicios.tipo_servicio, COUNT(servicios.tipo_servicio)/52 AS SERVICIO_POR_SEMANA " +
         "FROM reservaserv " +
