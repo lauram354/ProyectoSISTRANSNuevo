@@ -68,5 +68,18 @@ public interface consumosRepository extends JpaRepository<Consumos, Integer>{
     "HAVING COUNT(SERVICIOS.SERVICIOS_TYPE) < 3",
     nativeQuery = true)
     List<Object[]> consultarConsumoInternetCount();
-    
+
+    //RFC7
+
+    @Query(value = "SELECT usuarios.id, SUM(consumos.costofinal) as consumos " +
+    "FROM reservas " +
+    "INNER JOIN usureservas ON reservas.idreserva = usureservas.reservas_idreserva " +
+    "INNER JOIN usuarios ON usureservas.usuarios_id = usuarios.id " +
+    "FULL JOIN reservaserv ON usuarios.id = reservaserv.usuarios_id " +
+    "FULL JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " +
+    "WHERE (TO_CHAR(reservas.fecha_salida, 'IW') - TO_CHAR(reservas.fecha_entrada, 'IW') > 2) " +
+    "GROUP BY usuarios.id " +
+    "HAVING SUM(consumos.costofinal) > 15000000", nativeQuery = true)
+    List<Object[]> encontrarBuenosClientes();
+
 } 

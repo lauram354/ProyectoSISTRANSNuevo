@@ -72,4 +72,11 @@ public class consumosController {
 
         return "consumoInternet";
     }
+
+    @GetMapping("/consumos/buenosClientes")
+    public String encontrarBuenosClientes(Model model) {
+        model.addAttribute("buenosClientes", consumoRepository.encontrarBuenosClientes());
+        
+        return "buenosClientes";
+    }
 }
