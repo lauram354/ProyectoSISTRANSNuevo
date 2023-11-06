@@ -37,7 +37,7 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
     void eliminarReserva(@Param("id") int id);
     
 
-    @Query(value = "SELECT RESERVAS.HABIS_ID_HABITACION, COUNT(RESERVAS.HABIS_ID_HABITACION)*100/(SELECT COUNT(*) FROM RESERVAS) AS PorcentajeOcupacion " +
+    @Query(value = "SELECT RESERVAS.HABIS_ID_HABITACION, COUNT(RESERVAS.HABIS_ID_HABITACION)*100/(SELECT COUNT(*) FROM RESERVAS WHERE FECHA_ENTRADA between '01/01/2023' and '31/12/2023') AS PorcentajeOcupacion " +
             "FROM RESERVAS " +
             "WHERE FECHA_ENTRADA between '01/01/2023' and '31/12/2023' " +
             "GROUP BY HABIS_ID_HABITACION", nativeQuery = true)
