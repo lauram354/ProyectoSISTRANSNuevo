@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 import uniandes.edu.co.proyecto.modelo.Consumos;
 import uniandes.edu.co.proyecto.repositorio.consumosRepository;
 
@@ -58,4 +60,16 @@ public class consumosController {
         return "redirect:/consumos";
     }
     
+    @GetMapping("/consumos/internet")
+    public String consultarConsumoInternet(Model model) {
+        // Realiza la primera consulta SQL
+        List<Object[]> consumoInternet = consumoRepository.consultarConsumoInternet();
+        model.addAttribute("consumoInternet", consumoInternet);
+
+        // Realiza la segunda consulta SQL
+        List<Object[]> consumoInternetCount = consumoRepository.consultarConsumoInternetCount();
+        model.addAttribute("consumoInternetCount", consumoInternetCount);
+
+        return "consumoInternet";
+    }
 }
