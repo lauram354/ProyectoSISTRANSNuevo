@@ -19,6 +19,9 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Integer>{
     @Query(value = "SELECT * FROM USUARIOS WHERE ID = :id", nativeQuery = true)
     Usuarios darUsuario(@Param("id") int id);
 
+    @Query(value = "SELECT * FROM USUARIOS WHERE login = :login", nativeQuery = true)
+    Usuarios darUsuarioLogin(@Param("login") String login);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Usuarios (tipo_id, nombre, email, tipousu_idtipo, contrasenia, login) VALUES(:tipo_id, :nombre, :email, :tipoUsu, :contrasenia, :login)", nativeQuery = true)
