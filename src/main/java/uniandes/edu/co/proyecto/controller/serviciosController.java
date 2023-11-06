@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import uniandes.edu.co.proyecto.modelo.Servicios;
@@ -77,18 +80,26 @@ public class serviciosController {
         return "top20Servicios"; 
     }
 
-     @GetMapping("/servicios/servicioPorCaracteristica")
+    @GetMapping("/servicios/servicioPorCaracteristica")
     public String mostrarServiciosPorCaracteristica(
-        @RequestParam("usuarioId") Long usuarioId,
-        @RequestParam("fechaInicio") String fechaInicio,
-        @RequestParam("fechaFin") String fechaFin,
-        @RequestParam("tipoServicio") String tipoServicio,
-        Model model
-    ) {
-        List<Servicios> servicios = serviciosRepository.obtenerServiciosPorCaracteristica(
-            usuarioId, fechaInicio, fechaFin, tipoServicio);
+        String usuarioid,
+        String fechainicio,
+        String fechafin,
+        String tiposervicio,
+        Model model) 
+    {
         
-        model.addAttribute("servicios", servicios);
+        if ((usuarioid == null || usuarioid.equals("")) || (fechainicio ==null || fechainicio.equals(""))  || (fechafin ==null || fechafin.equals("")) || (tiposervicio ==null || tiposervicio.equals("")) ){
+            model.addAttribute("servicioPorCaracteristica", serviciosRepository.obtenerServiciosConsumo());
+        }
+        else{
+            fechainicio = fechainicio.replace('-', '/').strip();
+            fechafin = fechafin.replace('-', '/').strip();
+
+        List<Servicios> servicioPorCaracteristica = serviciosRepository.obtenerServiciosPorCaracteristica(usuarioid, fechainicio, fechafin, tiposervicio); 
+        model.addAttribute("servicioPorCaracteristica", servicioPorCaracteristica);
+        
+        }
         return "servicioPorCaracteristica";
     }
 

@@ -17,6 +17,9 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
     //RF5
     @Query(value = "select * from servicios", nativeQuery = true)
     Collection<Servicios> darServicios();
+
+    @Query(value = "select unique servicios_type from servicios", nativeQuery = true)
+    List<Object[]> darTiposServicios();
     
     @Query(value = "SELECT * FROM servicios WHERE idservicio = :idservicio", nativeQuery = true)
     Servicios darServicio(@Param("idservicio") int idservicio);
@@ -59,7 +62,7 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
      "AND servicios.tipo_servicio = :tipoServicio",
      nativeQuery = true)
      List<Servicios> obtenerServiciosPorCaracteristica(
-        @Param("usuarioId") Long usuarioId,
+        @Param("usuarioId") String usuarioId,
         @Param("fechaInicio") String fechaInicio,
         @Param("fechaFin") String fechaFin,
         @Param("tipoServicio") String tipoServicio
@@ -71,6 +74,14 @@ public interface serviciosRepository extends JpaRepository<Servicios, Integer>{
         "GROUP BY servicios.tipo_servicio " +
         "HAVING COUNT(servicios.tipo_servicio)/52 < 3", nativeQuery = true)
         List<Object[]> encontrarServiciosConPocaDemanda();
+
+
+        @Query(value = "SELECT * FROM servicios " +
+        "INNER JOIN reservaserv ON servicios.idservicio = reservaserv.servicios_idservicio " +
+        "INNER JOIN consumos ON reservaserv.consumos_idconsumo = consumos.idconsumo " ,nativeQuery = true)
+        List<Object[]> obtenerServiciosConsumo();
+        
+        
 
 
      
