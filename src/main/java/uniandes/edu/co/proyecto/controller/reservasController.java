@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,4 +60,13 @@ public class reservasController {
         return "redirect:/reservas";
     }
     
+
+    // RFC1 // 
+     @GetMapping("/reservas/indiceocupacion")
+    public String indiceOcupacionHabitaciones(Model model) {
+        List<Object[]> indiceOcupacionHabitaciones = reservaRepository.indiceOcupacionHabitaciones();
+        model.addAttribute("indiceOcupacionHabitaciones", indiceOcupacionHabitaciones);
+        return "redirect:/reservas";
+    
+    }
 }
