@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Habitación Más Solicitada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Habitación Más Solicitada</h1>
+    
+    <table>
+        <tr>
+            <th>Semana</th>
+            <th>Cantidad de Reservas</th>
+            <th>ID de Habitación</th>
+        </tr>
+        <th:block th:each="habitacion : ${habitacionMasSolicitada}">
+            <tr>
+                <td th:text="${habitacion[0]}"></td>
+                <td th:text="${habitacion[1]}"></td>
+                <td th:text="${habitacion[2]}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>
