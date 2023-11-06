@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.modelo.Reservas;
 import uniandes.edu.co.proyecto.repositorio.reservasRepository;
-import uniandes.edu.co.proyecto.repositorio.reservasRepository.RespuestaFechasMasOcupadas;
 
 @Controller
 public class reservasController {
@@ -72,11 +71,19 @@ public class reservasController {
     }
 
     //RFC6//
-    @GetMapping("/reservas/operacionhotel")
+    @GetMapping("/operacionhotel")
     public String darFechaMayorOcupacion(Model model) {
         List<Object[]>  informacion = reservaRepository.darFechaMayorOcupacion();
         model.addAttribute("fechasMayorOcupacion", informacion);
-        //model.addAttribute("habitacionesOcupadas", informacion.iterator().next().getHABITACIONES_OCUPADAS());
+
+        List<Object[]>  informacion2 = reservaRepository.darFechaMenorOcupacion();
+        model.addAttribute("fechasMenorOcupacion", informacion2);
+
+        List<Object[]>  informacion3 = reservaRepository.darFechaMayorConsumo();
+        model.addAttribute("fechasMayorConsumo", informacion3);
+
         return "operacionhotel";
     }
+
+
 }

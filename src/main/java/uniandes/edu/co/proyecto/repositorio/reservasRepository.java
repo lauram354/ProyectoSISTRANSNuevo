@@ -14,10 +14,6 @@ import uniandes.edu.co.proyecto.modelo.Reservas;
 
 public interface reservasRepository extends JpaRepository<Reservas, Integer>{
 
-    public interface RespuestaFechasMasOcupadas{
-        Date getFECHA();
-        Float getHABITACIONES_OCUPADAS();
-    }
     //RF7
     @Query(value = "SELECT * FROM reservas", nativeQuery = true)
     Collection<Reservas> darReservas();
@@ -47,7 +43,7 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
             "GROUP BY HABIS_ID_HABITACION", nativeQuery = true)
      List<Object[]> indiceOcupacionHabitaciones();
 
-     //RFC6
+     //RFC6 parte 1
      @Query(value= "WITH fechas_reservas AS (SELECT fecha_entrada AS fecha FROM reservas " + 
              "UNION ALL " + 
              "SELECT fecha_salida FROM reservas), " +
@@ -62,5 +58,29 @@ public interface reservasRepository extends JpaRepository<Reservas, Integer>{
              "ORDER BY COUNT(idreserva) DESC " + 
              "FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
     List<Object[]>  darFechaMayorOcupacion();
+
+    //RFC6 parte 2
+     @Query(value= "WITH fechas_reservas AS (SELECT fecha_entrada AS fecha FROM reservas " + 
+             "UNION ALL " + 
+             "SELECT fecha_salida FROM reservas), " +
+             "dias_intermedios AS ( " + 
+             "SELECT " + 
+             "fecha_entrada + LEVEL - 1 AS fecha " + 
+             "FROM (SELECT MIN(fecha) AS fecha_entrada, MAX(fecha) AS fecha_salida FROM fechas_reservas) " + 
+             "CONNECT BY LEVEL <= fecha_salida - fecha_entrada + 1) " + 
+             "SELECT di.fecha, COUNT(idreserva) AS habitaciones_ocupadas " + 
+             "FROM dias_intermedios di LEFT JOIN reservas r ON di.fecha BETWEEN r.fecha_entrada AND r.fecha_salida " + 
+             "GROUP BY di.fecha " + 
+             "ORDER BY COUNT(idreserva) ASC " + 
+             "FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
+    List<Object[]>  darFechaMenorOcupacion();
+
+    //RFC6 parte 2
+     @Query(value= "SELECT FECHA, SUM(consumos.costofinal) " + 
+             "FROM CONSUMOS " +
+             "GROUP BY FECHA " + 
+             "ORDER BY  SUM(consumos.costofinal) DESC " + 
+             "FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
+    List<Object[]>  darFechaMayorConsumo();
     
 } 
