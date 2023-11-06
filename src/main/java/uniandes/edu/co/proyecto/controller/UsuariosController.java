@@ -59,4 +59,11 @@ public class UsuariosController {
         return "redirect:/usuarios";
     }
 
+    @GetMapping("/usuarios/clientesExcelentes")
+    public String encontrarClientesExcelentes(Model model) {
+        model.addAttribute("clientesExcelentes", usuarioRepository.encontrarClientesExcelentes());
+        
+        return "clientesExcelentes";
+    }
+
 }
